@@ -1,0 +1,3281 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ספר המתכונים של אמא</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f3ee;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --text-secondary: #78716c;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --accent-soft: rgba(180, 83, 9, 0.06);
+    --accent-border: rgba(180, 83, 9, 0.15);
+    --border: #e7e5e4;
+    --border-light: #f5f5f4;
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.03);
+    --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.07), 0 4px 6px -4px rgba(0,0,0,0.03);
+    --shadow-xl: 0 20px 50px -5px rgba(0,0,0,0.08);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-full: 9999px;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #1c1917 0%, #292524 40%, #3f3028 100%);
+    color: #fafaf9;
+    text-align: center;
+    padding: 5.5rem 2rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(180,83,9,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(180,83,9,0.4) 50%, transparent 100%);
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: 3.4rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    position: relative;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  .hero .subtitle {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+    opacity: 0.45;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Hero decorative divider */
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1.8rem;
+    position: relative;
+  }
+  .hero-divider span {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+  .hero-divider .diamond {
+    width: 6px;
+    height: 6px;
+    background: rgba(180,83,9,0.6);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+
+  /* ===== STICKY BAR ===== */
+  .sticky-bar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(245, 243, 238, 0.85);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1.2rem;
+    transition: box-shadow var(--transition);
+  }
+  .sticky-bar.scrolled {
+    box-shadow: var(--shadow-md);
+  }
+
+  .search-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search-box {
+    flex: 1;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    outline: none;
+    background: var(--surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    text-align: right;
+    color: var(--text);
+  }
+  .search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .search-box input::placeholder { color: #a8a29e; }
+
+  .expand-btn {
+    padding: 0.55rem 1.1rem;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: all var(--transition);
+    white-space: nowrap;
+  }
+  .expand-btn:hover {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+  }
+
+  .search-count {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: none;
+    font-weight: 500;
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  .toc-cat {
+    padding: 0.35rem 0.9rem;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all var(--transition);
+    cursor: pointer;
+    touch-action: manipulation;
+    letter-spacing: 0.01em;
+  }
+  .toc-cat:hover {
+    background: var(--cat-color, var(--accent));
+    color: white;
+    border-color: var(--cat-color, var(--accent));
+    box-shadow: var(--shadow-sm);
+  }
+  .toc-cat.active {
+    background: var(--cat-color, var(--accent));
+    color: white;
+    border-color: var(--cat-color, var(--accent));
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* ===== CATEGORY HEADERS ===== */
+  .category-header {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 3.5rem 0 1.4rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid;
+    letter-spacing: -0.01em;
+  }
+  .category-header:first-child {
+    margin-top: 0;
+  }
+
+  /* ===== RECIPE CARDS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .recipe-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-right: 4px solid var(--accent);
+    border-radius: var(--radius);
+    margin-bottom: 0.9rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-xs);
+    break-inside: avoid;
+    animation: fadeInUp 0.45s ease both;
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  @media (hover: hover) {
+    .recipe-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+  .recipe-card.hidden { display: none; }
+
+  .recipe-header {
+    display: block;
+    width: 100%;
+    padding: 1.1rem 1.5rem;
+    min-height: 48px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    transition: background var(--transition);
+    text-align: inherit;
+    font: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: rgba(180,83,9,0.08);
+  }
+  .recipe-card.expanded .recipe-header {
+    border-bottom-color: var(--border);
+  }
+  .recipe-header:active {
+    background: var(--accent-soft);
+  }
+  @media (hover: hover) {
+    .recipe-header:hover {
+      background: var(--accent-soft);
+    }
+  }
+  .recipe-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .recipe-header h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .header-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .chevron {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    opacity: 0.5;
+  }
+  .recipe-card.expanded .chevron {
+    transform: rotate(180deg);
+    opacity: 0.8;
+  }
+  .recipe-source {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 0.2rem;
+    display: block;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .badge.meat { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .badge.dairy { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+  .badge.parve { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+
+  /* ===== RECIPE BODY (collapsible) ===== */
+  .recipe-body {
+    display: none;
+    padding: 0 1.5rem;
+  }
+  .recipe-card.expanded .recipe-body {
+    display: block;
+    padding: 1.5rem 1.5rem 1.8rem;
+  }
+
+  .section {
+    margin-bottom: 1.6rem;
+  }
+  .section:last-child { margin-bottom: 0; }
+
+  .section h4 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .section h4 svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .ingredients-section {
+    background: linear-gradient(135deg, rgba(180,83,9,0.03) 0%, rgba(180,83,9,0.06) 100%);
+    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--accent-border);
+  }
+
+  .recipe-body ul {
+    padding-right: 1.2rem;
+    margin-bottom: 0;
+  }
+  .recipe-body li {
+    margin-bottom: 0.4rem;
+    line-height: 1.65;
+    font-size: 0.94rem;
+    color: #44403c;
+  }
+
+  /* Styled numbered steps */
+  .steps {
+    list-style: none;
+    padding-right: 0;
+    counter-reset: step-counter;
+  }
+  .steps li {
+    counter-increment: step-counter;
+    position: relative;
+    padding-right: 3rem;
+    margin-bottom: 0.9rem;
+    line-height: 1.7;
+  }
+  .steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    right: 0;
+    top: 0.15em;
+    width: 2rem;
+    height: 2rem;
+    background: var(--text);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .tips-section {
+    background: #fffbeb;
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-sm);
+    border-right: 3px solid #f59e0b;
+    border: 1px solid #fef3c7;
+    border-right: 3px solid #f59e0b;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+  .footer .heart { color: #ef4444; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .sticky-bar, .footer { display: none; }
+    .hero {
+      padding: 2rem !important;
+      background: white !important;
+      color: var(--text) !important;
+      border-bottom: 2px solid var(--text);
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      color: var(--text) !important;
+    }
+    .hero::before, .hero::after { display: none; }
+    body { background: white; font-size: 11pt; line-height: 1.5; }
+    .container { max-width: 100%; padding: 1rem; }
+    .recipe-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      box-shadow: none !important;
+      border: 1px solid #ccc;
+      transform: none !important;
+      animation: none !important;
+    }
+    .recipe-body {
+      display: block !important;
+      padding: 1.2rem !important;
+    }
+    .recipe-header { cursor: default; }
+    .chevron { display: none; }
+    .category-header {
+      page-break-after: avoid;
+      color: var(--text) !important;
+      border-bottom-color: var(--text) !important;
+    }
+    .recipe-card + .category-header {
+      page-break-before: always;
+    }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 640px) {
+    .hero { padding: 3.5rem 1.2rem 3rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 0.95rem; }
+    .container { padding: 1.2rem 0.8rem; }
+    .toc {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding-bottom: 0.3rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .toc::-webkit-scrollbar { display: none; }
+    .toc-cat { flex-shrink: 0; }
+    .recipe-header { padding: 1rem 1.2rem; }
+    .recipe-header h3 { font-size: 1.1rem; }
+    .recipe-title-row { flex-wrap: wrap; }
+    .recipe-card.expanded .recipe-body { padding: 1.1rem 1.2rem 1.4rem; }
+    .steps li { padding-right: 2.6rem; }
+    .steps li::before { width: 1.8rem; height: 1.8rem; font-size: 0.72rem; }
+    .expand-btn { font-size: 0.78rem; padding: 0.45rem 0.8rem; }
+    .category-header { font-size: 1.6rem; margin: 2.5rem 0 1rem; }
+  }
+
+  /* ===== LARGE SCREENS ===== */
+  @media (min-width: 1200px) {
+    .hero { padding: 6rem 2rem 5rem; }
+    .hero h1 { font-size: 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>ספר המתכונים של אמא</h1>
+  <p>מבוסס על מתכונים שהצליחו בבית</p>
+  <p class="subtitle"><span id="recipe-total">52</span> מתכונים מהמשפחה</p>
+  <div class="hero-divider"><span></span><span class="diamond"></span><span></span></div>
+</div>
+
+<div class="sticky-bar" id="sticky-bar">
+  <div class="search-row">
+    <div class="search-box">
+      <input type="text" id="search" placeholder="&#128269; חיפוש מתכון..." autocomplete="off">
+    </div>
+    <button type="button" class="expand-btn" id="expand-btn">פתח הכל</button>
+  </div>
+  <div class="search-count" id="search-count"></div>
+  <nav class="toc" id="toc">
+    <a href="#cat-עוף" class="toc-cat" data-cat="עוף" style="--cat-color: #e67e22">🍗 עוף (18)</a>
+<a href="#cat-בשר" class="toc-cat" data-cat="בשר" style="--cat-color: #c0392b">🥩 בשר (10)</a>
+<a href="#cat-דגים" class="toc-cat" data-cat="דגים" style="--cat-color: #2980b9">🐟 דגים (3)</a>
+<a href="#cat-מרקים" class="toc-cat" data-cat="מרקים" style="--cat-color: #d4a017">🍲 מרקים (5)</a>
+<a href="#cat-צמחוני" class="toc-cat" data-cat="צמחוני" style="--cat-color: #27ae60">🥬 צמחוני (7)</a>
+<a href="#cat-תוספות" class="toc-cat" data-cat="תוספות" style="--cat-color: #a0785a">🍚 תוספות (3)</a>
+<a href="#cat-מאפים" class="toc-cat" data-cat="מאפים" style="--cat-color: #d4a44c">🥧 מאפים (5)</a>
+<a href="#cat-קינוחים" class="toc-cat" data-cat="קינוחים" style="--cat-color: #6b3a2a">🍫 קינוחים (1)</a>
+  </nav>
+</div>
+
+<div class="container" id="recipes-container">
+  <h2 id="cat-עוף" class="category-header" style="color: #e67e22; border-bottom-color: #e67e22">🍗 עוף</h2>
+<div class="recipe-card" id="recipe-1" data-title="בלילה לשניצל" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.04s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 בלילה לשניצל</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 ביצים</li>
+<li>1 כף פפריקה מתוקה מרוקאית בשמן</li>
+<li>1.5 כפות אבקת מרק</li>
+<li>1 כף חרדל</li>
+<li>פלפל שחור (לפי הטעם)</li>
+<li>מלח (לפי הטעם)</li>
+<li>שניצלים</li>
+<li>פירורי לחם לציפוי</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בקערה, טורפים היטב את הביצים יחד עם כל התבלינים: פפריקה, אבקת מרק, חרדל, פלפל שחור ומלח, עד לקבלת בלילה אחידה. מוסיפים טיפונת מים לבלילה (כמו שלוק מים).</li>
+<li>שוטפים את השניצלים וחותכים אותם לגודל ולעובי הרצויים.</li>
+<li>מכניסים את השניצלים לבלילה ומשרים אותם.</li>
+<li>לאחר ההשריה, מצפים את השניצלים בפירורי לחם.</li>
+<li>מטגנים בשמן חם עד להזהבה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ככל שזמן ההשריה של השניצלים בבלילה ארוך יותר, התוצאה טובה יותר.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-2" data-title="סופריטו עוף תפוחי אדמה ובצל" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.08s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 סופריטו עוף תפוחי אדמה ובצל</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>4 כרעיים של עוף</li>
+<li>3 בצלים, חתוכים לחצאי פרוסות</li>
+<li>5 תפוחי אדמה, חתוכים לקוביות</li>
+<li>1 כף סילאן</li>
+<li>1 כף מלח גס</li>
+<li>2 כפות פלפל שחור</li>
+<li>300 מ"ל ציר עוף או מים</li>
+<li>שמן זית</li>
+<li>שמן לטיגון תפוחי האדמה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מחבת או סיר לטיגון</li>
+<li>נייר סופג</li>
+<li>סיר שטוח שמתאים לתנור</li>
+<li>כף עץ</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מטגנים את קוביות תפוחי האדמה בשמן חצי עמוק עד עמוק. כשהן מזהיבות, מוציאים לנייר סופג ומניחים בצד.</li>
+<li>מחממים 2 כפות שמן בסיר שטוח שמתאים לתנור. כשהסיר חם מאוד, מניחים בזהירות את הכרעיים על צד העור וצולים 3-4 דקות מכל צד, עד שהעור פריך וזהוב.</li>
+<li>מוציאים את העוף ומניחים בצד.</li>
+<li>לשומן שנשאר בסיר מוסיפים עוד 2 כפות שמן זית ומגרדים היטב את המשקעים מתחתית הסיר בעזרת כף עץ.</li>
+<li>מוסיפים את הבצלים הפרוסים ומטגנים עד לשקיפות.</li>
+<li>מוסיפים את הסילאן לבצל ומערבבים יחד כ-3 דקות.</li>
+<li>יוצקים 4 כפות מציר העוף או מהמים וממשיכים לערבב עד שהבצל מקבל מרקם של ריבה.</li>
+<li>מחזירים את הכרעיים לסיר, מוסיפים את קוביות תפוחי האדמה המטוגנות ואת יתרת הציר או המים, ומביאים לרתיחה.</li>
+<li>מתבלים במלח גס ופלפל שחור, מכסים את הסיר ומעבירים לתנור שחומם מראש ל-180 מעלות למשך שעה.</li>
+<li>מוציאים מהתנור ומברישים את הכרעיים ברוטב שנוצר.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי לצלות בכל פעם שתי כרעיים כדי לא להוריד את החום בסיר.</li>
+<li>אם נשאר הרבה רוטב בסיר, מומלץ להמשיך לצמצם אותו על הגז ללא מכסה עד לקבלת רוטב סמיך וקטיפתי.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-3" data-title="סינטה או פרגיות במחבת" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.12s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 סינטה או פרגיות במחבת</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>סינטה או פרגיות</li>
+<li>2 בצלים, פרוסים וחצויים</li>
+<li>1 חבילת פטריות, פרוסות</li>
+<li>2 גזרים, חתוכים למקלות דקים (אופציונלי)</li>
+<li>חופן אגוזים או אגוזי קשיו (אופציונלי)</li>
+<li>2 כפות טריאקי</li>
+<li>1 כף סויה</li>
+<li>פלפל שחור גרוס</li>
+<li>מלח</li>
+<li>מעט שמן זית</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מחבת פסים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מערבבים את חומרי הרוטב (טריאקי, סויה, פלפל שחור, מלח ושמן זית) ומשרים את הפרגיות (או הסינטה) לזמן מה.</li>
+<li>על מחבת פסים, מטגנים קודם כל את הבצלים היטב.</li>
+<li>אם משתמשים בגזר, יש להוסיף אותו למחבת יחד עם הבצלים, מכיוון שהוא קשה וזקוק לזמן כדי להתרכך.</li>
+<li>מוסיפים למחבת את הפרגיות המושרות ומטגנים.</li>
+<li>לקראת הסוף, מוסיפים את פרוסות הפטריות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להוסיף למנה גם חופן אגוזים או אגוזי קשיו.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-4" data-title="עוף ביין" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.16s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף ביין</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>4-5 כרעי עוף, חתוכים או שלמים</li>
+<li>1/2 כוס יין לבן</li>
+<li>1/2 כוס מים</li>
+<li>2-3 כפות דבש</li>
+<li>2-3 כפות מיונז</li>
+<li>2-3 כפות אבקת מרק בצל</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>קערה מתאימה למיקרוגל (רצוי זכוכית)</li>
+<li>תבנית אפייה</li>
+<li>נייר כסף</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בקערה המתאימה למיקרוגל, ערבבו יין לבן, מים, דבש, מיונז ואבקת מרק בצל.</li>
+<li>חממו מעט במיקרוגל עד שהדבש והמיונז נמסים והתערובת אחידה.</li>
+<li>סדרו את חלקי העוף בתבנית אפייה.</li>
+<li>שפכו את הרוטב מעל העוף.</li>
+<li>השרו את העוף ברוטב למשך שעה עד שלוש שעות.</li>
+<li>חממו תנור מראש לחום של 180 מעלות.</li>
+<li>כסו את התבנית בנייר כסף ואפו במשך כ-40 דקות.</li>
+<li>הסירו את נייר הכסף והמשיכו לאפות עד שהעוף שחום.</li>
+<li>במהלך האפייה ללא כיסוי, הפכו את העוף כדי שישחים גם מהצד השני.</li>
+<li>מדי פעם, הרטיבו את העוף עם הנוזלים מהתבנית בעזרת כף.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>רצוי להשרות את העוף ברוטב כמה שיותר זמן לפני האפייה (שעה, שעתיים, שלוש) לספיגת טעמים.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-5" data-title="עוף בסיר (עוף צלי)" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.2s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף בסיר (עוף צלי)</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>כרעי עוף</li>
+<li>1 בצל גדול או 2 בצלים בינוניים</li>
+<li>תפוחי אדמה</li>
+<li>מים חמים</li>
+<li>שמן לטיגון</li>
+<li>תבלינים לגרסה אדומה: פפריקה מתוקה מרוקאית, אבקת מרק עוף, פלפל, מלח</li>
+<li>תבלינים לגרסה צהובה: כורכום, אבקת מרק, פלפל, מלח</li>
+<li>ירקות אופציונליים: קישואים, בטטה, דלעת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מטגנים את הבצל בסיר עם שמן עד להזהבה.</li>
+<li>שוטפים את כרעי העוף, מוסיפים לסיר ומטגנים משני הצדדים עד שהעוף משחים קלות.</li>
+<li>מוסיפים תבלינים לפי הגרסה הרצויה (אדומה או צהובה) ומערבבים.</li>
+<li>מוסיפים חצי כוס מים חמים.</li>
+<li>מבשלים על אש נמוכה במשך כשעה. במהלך הבישול, אם המים מתאדים, מוסיפים עוד קצת מים חמים בכל פעם.</li>
+<li>חותכים את תפוחי האדמה לפלחים עבים (כמו צ'יפס עבה, חתוכים ל-6).</li>
+<li>ב-20-30 הדקות האחרונות של הבישול, מוסיפים את תפוחי האדמה לסיר (וירקות נוספים אם משתמשים).</li>
+<li>ממשיכים לבשל עד שתפוחי האדמה והעוף רכים. זמן הבישול הכולל הוא כשעה וחצי.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>קיימות שתי גרסאות עיקריות למתכון: גרסה אדומה עם פפריקה, וגרסה צהובה עם כורכום.</li>
+<li>לגרסה האדומה אפשר להוסיף גם בטטה או דלעת.</li>
+<li>לגרסה הצהובה אפשר להוסיף קישואים.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-6" data-title="עוף בריבת בצל" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.24s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף בריבת בצל</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>6 כרעי עוף בינוניות</li>
+<li>6 בצלים בינוניים, קלופים ופרוסים דק</li>
+<li>2 כפות סילאן</li>
+<li>1 כפית מלח דק</li>
+<li>1 כפית ראס אל חנות</li>
+<li>1/2 כפית פלפל שחור גרוס</li>
+<li>3 כפות שמן זית (לטיגון)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר רחב</li>
+<li>צלחת</li>
+<li>תבנית</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בסיר רחב צורבים את כרעי העוף עם 3 כפות שמן זית משני הצדדים.</li>
+<li>מוציאים את העוף לצלחת ושומרים בצד.</li>
+<li>באותו הסיר, עם השמן שנשאר, מטגנים את הבצלים עד שהם מזהיבים.</li>
+<li>מתבלים את הבצלים בסילאן, מלח, ראס אל חנות ופלפל שחור, מערבבים היטב, מכסים ומבשלים על אש קטנה לפחות שעה, עד שהבצלים הופכים לריבה.</li>
+<li>מסדרים בתבנית שכבה של ריבת הבצל, מניחים מעליה את העוף הצרוב ומכסים את העוף בשאר הבצל.</li>
+<li>אופים בתנור שחומם מראש ל-180 מעלות, חום עליון-תחתון, במשך שעה וחצי.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי לתת לבצלים מספיק זמן על אש קטנה כדי שיתפתחו לריבת בצל עמוקה ומתוקה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-7" data-title="עוף בשומר ותפוזים" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.28s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף בשומר ותפוזים</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>5 כרעיים של עוף</li>
+<li>3 שומרים חתוכים לשמיניות או רבעים</li>
+<li>200 גרם מנגולד או תרד קצוץ</li>
+<li>1/2 כוס מיץ תפוזים טרי (100 מ"ל)</li>
+<li>3-4 פלחי תפוז</li>
+<li>1 כוס יין לבן טוב (200 מ"ל)</li>
+<li>8 שיני שום שלמות</li>
+<li>1/4 כוס שמן זית</li>
+<li>3 כפות שמן זית נוספות</li>
+<li>2 כפות פטרוזיליה קצוצה</li>
+<li>מלח</li>
+<li>פלפל שחור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר רחב ושטוח שמתאים גם לתנור</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>ממליחים ומפלפלים את הכרעיים מכל הצדדים.</li>
+<li>בסיר רחב ושטוח שמתאים גם לתנור מחממים רבע כוס שמן זית על הלהבה הכי גבוהה.</li>
+<li>מניחים את הכרעיים על צד העור וצולים כחמש דקות מלאות, עד שהעוף משתחרר בקלות מהסיר.</li>
+<li>הופכים את העוף, ובין הכרעיים מפזרים את רבעי או שמיניות השומר וצולים גם אותם כשלוש דקות.</li>
+<li>הופכים את השומרים, יוצקים לסיר את מיץ התפוזים ואת היין הלבן, וממליחים ומפלפלים שוב את העוף.</li>
+<li>מפזרים בסיר ערוגות קטנות של מנגולד או תרד, מוסיפים את שיני השום ומזלפים מעל עוד 3 כפות שמן זית.</li>
+<li>מכסים ומבשלים על אש קטנה כ-35 דקות. בינתיים מחממים תנור ל-220 מעלות.</li>
+<li>אחרי 35 דקות מוסיפים מעל את פלחי התפוז ומעבירים את הסיר, ללא מכסה, לתנור החם ל-25 דקות נוספות.</li>
+<li>מוציאים מהתנור, יוצקים מהרוטב שבתחתית על העוף והסיר, מפזרים פטרוזיליה קצוצה ומגישים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כשהעוף נצלה היטב הוא מתנתק לבד, ולא צריך לנתק אותו בכוח.</li>
+<li>אפשר להשתמש במנגולד או בתרד לפי מה שיש בבית.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים עם פלחי התפוז והפטרוזיליה מעל.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-8" data-title="עוף בתנור עם בטטה ותפוח אדמה" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.32s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף בתנור עם בטטה ותפוח אדמה</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חתיכות עוף</li>
+<li>תפוחי אדמה, חתוכים לקוביות גדולות</li>
+<li>בטטה, חתוכה לקוביות גדולות</li>
+<li>1 בצל גדול, חתוך לפסים או קצוץ גס</li>
+<li>2 עגבניות, קצוצות</li>
+<li>שיני שום קלופות (שן אחת מתחת לכל חתיכת עוף)</li>
+<li>2-3 עגבניות מגורדות</li>
+<li>3-4 לחיצות קטשופ</li>
+<li>קצת כמון</li>
+<li>אבקת מרק עוף</li>
+<li>פלפל</li>
+<li>מלח</li>
+<li>כורכום</li>
+<li>קצת שמן</li>
+<li>מעט מים חמים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית גדולה</li>
+<li>קערית</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בתבנית גדולה, מסדרים שכבה של תפוחי אדמה ובטטה חתוכים לקוביות.</li>
+<li>מפזרים מעל את הבצל החתוך ואת העגבניות הקצוצות.</li>
+<li>מניחים את חתיכות העוף על שכבת הירקות.</li>
+<li>מכניסים שן שום קלופה מתחת לכל חתיכת עוף.</li>
+<li>בקערית נפרדת, מערבבים את כל מצרכי הרוטב: עגבניות מגורדות, קטשופ, כמון, אבקת מרק עוף, פלפל, מלח, כורכום ושמן.</li>
+<li>מוסיפים מעט מים חמים לרוטב ומערבבים עד לקבלת מרקם של משחה.</li>
+<li>מורחים את הרוטב על חתיכות העוף.</li>
+<li>מוסיפים מעט מים לתחתית התבנית.</li>
+<li>מכניסים לתנור שחומם מראש ל-180 מעלות ואופים למשך כ-2.5 שעות.</li>
+</ol></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-9" data-title="עוף חמוץ מתוק" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.36s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף חמוץ מתוק</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לעוף ולירקות: 500 גרם חזה עוף, חתוך לקוביות עבות של 3 ס"מ או לרצועות</li>
+<li>לעוף ולירקות: פלפל אדום מתוק, חתוך לקוביות של 3 ס"מ</li>
+<li>לעוף ולירקות: פלפל ירוק חריף (לא חובה)</li>
+<li>לעוף ולירקות: בצל לבן בינוני, חתוך לקוביות של 3 ס"מ</li>
+<li>לעוף ולירקות: 1 כפית ג'ינג'ר מגורר או קצוץ דק</li>
+<li>לעוף ולירקות: שמן לטיגון עמוק</li>
+<li>לציפוי טמפורה: 70 גרם קמח לבן או תופח</li>
+<li>לציפוי טמפורה: 2 כפות קורנפלור</li>
+<li>לציפוי טמפורה: 1/2 כפית אבקת אפייה</li>
+<li>לציפוי טמפורה: 1/2 כפית מלח שולחן</li>
+<li>לציפוי טמפורה: כ-3/4 כוס מים קרים (150 מ"ל)</li>
+<li>לרוטב חמוץ-מתוק: 1 כף גדושה רסק עגבניות</li>
+<li>לרוטב חמוץ-מתוק: 3 כפות סויה</li>
+<li>לרוטב חמוץ-מתוק: 2 כפות גדושות סוכר חום כהה</li>
+<li>לרוטב חמוץ-מתוק: 1 כף שמן שומשום</li>
+<li>לרוטב חמוץ-מתוק: 1/4 כוס חומץ</li>
+<li>לרוטב חמוץ-מתוק: 1 כפית ג'ינג'ר מגורר</li>
+<li>לרוטב חמוץ-מתוק: 1 שן שום כתושה</li>
+<li>לרוטב חמוץ-מתוק: 1 כפית צ'ילי חריף</li>
+<li>לרוטב חמוץ-מתוק: 1/2 כוס מים רותחים</li>
+<li>לרוטב חמוץ-מתוק: עוד 1/2 כוס מים לדילול</li>
+<li>לתיבול העוף: 1/4 כפית מלח</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>ווק או מחבת בקוטר 32 ס"מ</li>
+<li>קערה</li>
+<li>קערה נפרדת</li>
+<li>נייר סופג</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מערבבים את קוביות העוף עם רבע כפית מלח ומניחים בצד ל-10 דקות.</li>
+<li>בקערה נפרדת מערבבים את כל חומרי הרוטב החמוץ-מתוק ומניחים בצד.</li>
+<li>בקערה מערבבים קורנפלור, קמח, אבקת אפייה ומלח. מוסיפים את המים הקרים ומערבבים עד לקבלת בלילה במרקם של טחינה מדוללת.</li>
+<li>מכניסים את נתחי העוף לבלילת הטמפורה, מערבבים שיצופו היטב ומניחים בצד.</li>
+<li>מכינים בצד את הפלפלים, הבצל והג'ינג'ר כשהם חתוכים.</li>
+<li>מלהיטים ווק או מחבת רחבה על הלהבה הכי גבוהה ומוסיפים שמן לטיגון עמוק.</li>
+<li>כשהשמן חם מטגנים את קוביות העוף המצופות ב-2-3 נגלות, עד שהן מזהיבות יפה מכל הכיוונים, בערך 6-10 דקות. מוציאים לנייר סופג.</li>
+<li>מרוקנים בזהירות את רוב השמן ומשאירים רק 1-2 כפות במחבת.</li>
+<li>מקפיצים את הירקות והג'ינג'ר כ-3 דקות.</li>
+<li>מוסיפים את הרוטב החמוץ-מתוק ועוד כחצי כוס מים לדילול, מערבבים ומביאים לרתיחה.</li>
+<li>מנמיכים את האש ומבשלים את הרוטב כ-5 דקות.</li>
+<li>מוסיפים את העוף המטוגן, מגבירים את האש ומערבבים היטב כך שהרוטב יעטוף את כל העוף. מכבים את האש.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי לטגן את העוף בכמה נגלות כדי שהחתיכות לא יידבקו זו לזו.</li>
+<li>מומלץ להגיש חם, מיד לאחר ההכנה, לצד אורז לבן.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-10" data-title="עוף עם בצלים מקורמלים, ערמונים, תפוזים ובטטות" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.4s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 עוף עם בצלים מקורמלים, ערמונים, תפוזים ובטטות</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>7-8 יח' עוף שוקיים וכרעיים ללא עור</li>
+<li>4 בצלים לבנים גדולים</li>
+<li>3 שקיות ערמונים</li>
+<li>2 בטטות</li>
+<li>1 תפוז</li>
+<li>2 כפות רכז רימונים</li>
+<li>1/2 כוס סויה</li>
+<li>3/4 כוס טריאקי</li>
+<li>3 כפות סרירצ'ה (רוטב צ'ילי חריף)</li>
+<li>3/4 כוס סילאן</li>
+<li>1 כף שמן שומשום</li>
+<li>1 כף פפריקה מתוקה</li>
+<li>1 כפית פפריקה חריפה</li>
+<li>1/4 כפית בהרט</li>
+<li>1/4 כפית ראס אל חנות</li>
+<li>שמן זית</li>
+<li>מלח גס</li>
+<li>פלפל גרוס</li>
+<li>2 כוסות מים רותחים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר רחב</li>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>פורסים את הבצלים לרצועות דקות.</li>
+<li>בסיר רחב עם שמן מטגנים את הבצלים על להבה בינונית עד קירמול. כדי לעזור לקירמול מוסיפים מדי כמה דקות מעט מים רותחים ומערבבים, עד שמתקבל בצל זהוב ויפה.</li>
+<li>בינתיים מחממים תנור טורבו ל-200 מעלות.</li>
+<li>חותכים את הבטטות, מניחים בתבנית עם נייר אפייה ומעט שמן זית, מוסיפים מלח גס, פלפל גרוס ועוד שמן זית ומערבבים כך שהבטטות מצופות מכל הכיוונים.</li>
+<li>מסדרים את הבטטות כשהצד השטוח כלפי מטה ואופים עד לצבע מקורמל ויפה, בערך 35 דקות בהתאם לתנור.</li>
+<li>כשהבצל מקורמל מוסיפים את העוף ללא העור, מתבלים במלח ופלפל ומניחים אותו הפוך, עם הצד כלפי מטה.</li>
+<li>כשהעוף מקבל צבע זהוב ויפה מכל הכיוונים מוסיפים פפריקה מתוקה, פפריקה חריפה, בהרט וראס אל חנות ומערבבים היטב.</li>
+<li>אחרי כ-5 דקות מוסיפים סילאן, סויה, רכז רימונים, שמן שומשום, טריאקי וסרירצ'ה.</li>
+<li>במשך כל זמן הבישול על הגז משאירים את חלקי העוף כשהם הפוכים, כדי לקבל מרקם וצבע טובים.</li>
+<li>מערבבים, מכסים את הסיר לכ-5 דקות, מוסיפים 2 כוסות מים רותחים ומכסים ל-15 דקות נוספות.</li>
+<li>מוסיפים את הערמונים וממשיכים לבשל את העוף על להבה קטנה-בינונית.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>קירמול הבצל לוקח זמן, וכדאי להוסיף מעט מים רותחים בהדרגה ולהתאזר בסבלנות.</li>
+<li>חשוב להשאיר את חלקי העוף הפוכים כלפי מטה בזמן הבישול על הגז.</li>
+<li>בפוסט המקורי צוין כנראה שיש המשך בתגובה ראשונה, ולכן ייתכן שחסר שלב סיום לגבי התפוז או אפייה סופית.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים לצד הבטטות המקורמלות.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-11" data-title="פרגיות בקרם קוקוס" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.44s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 פרגיות בקרם קוקוס</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>פרגיות חתוכות לקוביות</li>
+<li>בצל</li>
+<li>שום</li>
+<li>גזר חתוך לעיגולים</li>
+<li>גמבה</li>
+<li>כוסברה</li>
+<li>תבלינים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קוצצים את הבצל והשום.</li>
+<li>מטגנים קלות את הבצל והשום.</li>
+<li>מוסיפים את קוביות הפרגיות ומטגנים אותן עד שהן הופכות ללבנות.</li>
+<li>מוסיפים את הגזר, הגמבה ואת כל התבלינים.</li>
+<li>בסוף הבישול, מוסיפים את הכוסברה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר לקצוץ את הבצל לפסים או לקוביות קטנות.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-12" data-title="פרגיות ברוטב אדום" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.48s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 פרגיות ברוטב אדום</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 ק"ג פרגיות, נקיות מעור וחתוכות לקוביות</li>
+<li>1 בצל גדול, קצוץ קטן</li>
+<li>שמן</li>
+<li>2 קופסאות קטנות רסק עגבניות</li>
+<li>זיתים חתוכים לטבעות</li>
+<li>1 גמבה, חתוכה לפסים</li>
+<li>1 סלסלת פטריות, חתוכה לרבעים</li>
+<li>½ עד ¾ כף פפריקה</li>
+<li>¼ עד ½ כפית כורכום</li>
+<li>2 כפות אבקת מרק עוף</li>
+<li>½ עד 1 כפית שטוחה פלפל שחור</li>
+<li>כ-½ כפית מלח</li>
+<li>1 עד 1.5 כוסות מים רותחים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מאדים את הבצל הקצוץ בשמן עד שהוא מתחיל להזהיב או הופך שקוף.</li>
+<li>מוסיפים את קוביות הפרגיות ומאדים קלות.</li>
+<li>מוסיפים רסק עגבניות, זיתים, גמבה ופטריות.</li>
+<li>מתבלים בפלפל שחור, מלח, פפריקה, אבקת מרק עוף וכורכום.</li>
+<li>מוסיפים מים רותחים (כ-1 עד 1.5 כוסות, לא צריך לכסות את כל המרכיבים).</li>
+<li>מערבבים הכל ומבשלים על אש נמוכה במשך כ-40 דקות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>זה תבשיל ולא מרק, לכן כמות המים לא צריכה לכסות את כל המרכיבים.</li>
+<li>לגבי המלח, עדיף לשים פחות בהתחלה ולתקן טעמים בסוף.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מומלץ להגיש על אורז לבן או על פירה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-13" data-title="פרגיות בתנור" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.52s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 פרגיות בתנור</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>פרגיות</li>
+<li>בטטות</li>
+<li>תפוחי אדמה</li>
+<li>גזר</li>
+<li>בצל</li>
+<li>שום</li>
+<li>שמן</li>
+<li>רוטב צ'ילי חריף-מתוק</li>
+<li>רוטב סויה</li>
+<li>רוטב טריאקי</li>
+<li>סירופ מייפל</li>
+<li>פפריקה מתוקה</li>
+<li>פלפל</li>
+<li>מלח</li>
+<li>מעט מים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>קערה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>רפדו תבנית בנייר אפייה.</li>
+<li>חתכו את הירקות (בטטות, תפוחי אדמה, גזר, בצל ושום) וסדרו אותם על התבנית.</li>
+<li>הניחו את הפרגיות מעל הירקות.</li>
+<li>בקערה נפרדת, ערבבו שמן, צ'ילי חריף-מתוק, סויה, טריאקי, מייפל, פפריקה מתוקה, פלפל ומלח.</li>
+<li>מרחו את הרוטב באופן אחיד על הפרגיות והירקות.</li>
+<li>הוסיפו מעט מים לתבנית.</li>
+<li>הכניסו לתנור.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ניתן לחתוך את הירקות לעיגולים או פסים, לפי העדפה אישית.</li>
+<li>הוספת מייפל לרוטב היא אופציונלית.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-14" data-title="פרגיות על האש (שיפודים)" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.56s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 פרגיות על האש (שיפודים)</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חתיכות פרגיות ללא עור</li>
+<li>שמן</li>
+<li>סויה</li>
+<li>פלפל שחור</li>
+<li>דבש</li>
+<li>יין לבן</li>
+<li>שום</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>שיפודים</li>
+<li>מנגל</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מערבבים את כל חומרי המרינדה: שמן, סויה, פלפל שחור, דבש, יין לבן ושום.</li>
+<li>משרים את חתיכות הפרגיות ברוטב.</li>
+<li>משפדים את הפרגיות וצולים על האש.</li>
+</ol></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-15" data-title="קוביות חזה עוף לטורטיה" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.6s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 קוביות חזה עוף לטורטיה</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חזה עוף</li>
+<li>מעט שמן זית</li>
+<li>צ'ילי חריף מתוק</li>
+<li>סויה</li>
+<li>מעט טריאקי</li>
+<li>פלפל שחור</li>
+<li>מעט שום</li>
+<li>מעט סוכר חום</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מחבת פסים או מחבת רגילה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קוצצים את חזה העוף לקוביות קטנות.</li>
+<li>מערבבים בקערה את קוביות העוף עם כל חומרי המרינדה: שמן זית, צ'ילי חריף מתוק, סויה, טריאקי, פלפל שחור, שום וסוכר חום.</li>
+<li>משרים את העוף במרינדה למשך 20 דקות עד חצי שעה, או יותר.</li>
+<li>מחממים מעט שמן על מחבת פסים או מחבת רגילה ומקפיצים את קוביות העוף עד שהן מוכנות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להשרות את העוף במרינדה יותר זמן, כמה שרוצים.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-16" data-title="קוסקוס בקוסקוסייר" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.64s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 קוסקוס בקוסקוסייר</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>למרק: גזר</li>
+<li>למרק: קישוא</li>
+<li>למרק: דלעת/דלורית</li>
+<li>למרק: רבע כרוב</li>
+<li>למרק: בצל או בצלצלי שאלוט קטנים</li>
+<li>למרק: גרגרי חומוס קפואים</li>
+<li>למרק: שמן</li>
+<li>למרק: 4-6 כפות אבקת מרק עוף</li>
+<li>למרק: 2 כפיות פלפל שחור</li>
+<li>למרק: 2 כפיות שטוחות כורכום</li>
+<li>למרק: 2 כפיות שטוחות או פחות מלח</li>
+<li>למרק: 5-7 ליטר מים או יותר</li>
+<li>לקוסקוס: 2 שקיות קוסקוס דק</li>
+<li>לקוסקוס: 2 כפיות מלח</li>
+<li>לקוסקוס: 1-2 כפיות כורכום</li>
+<li>לקוסקוס: ארבע כפות שמן</li>
+<li>לקוסקוס: 5 עד 6 כוסות מים (מחולקות לשתי פעימות)</li>
+<li>אופציונלי: כרעי עוף למרק</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>קוסקוסייר (סיר אידוי לקוסקוס)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>הכנת המרק: חתכו את הגזר, הקישוא והדלעת לקוביות גדולות, את הכרוב לפסים דקים ואת הבצל לשמיניות.</li>
+<li>בסיר התחתון של הקוסקוסייר, חממו שמן ואדו את כל הירקות עד שהם מצופים בשמן.</li>
+<li>הוסיפו את התבלינים הכפולים: 4-6 כפות אבקת מרק עוף, 2 כפיות פלפל שחור, 2 כפיות שטוחות כורכום ו-2 כפיות שטוחות או פחות מלח, וערבבו היטב.</li>
+<li>הוסיפו 5-7 ליטר מים, הביאו לרתיחה על אש גבוהה ולאחר מכן הנמיכו את האש לבישול איטי.</li>
+<li>הכנת הקוסקוס: בקערה, שפכו 2 שקיות קוסקוס והוסיפו 2 כפיות מלח, 1-2 כפיות כורכום וארבע כפות שמן. ערבבו היטב.</li>
+<li>הוסיפו שתיים וחצי עד שלוש כוסות מים, ערבבו שוב, ותנו לסולת לנוח כ-7 דקות.</li>
+<li>לאחר המנוחה, פוררו את הסולת בעזרת שני מזלגות או ידיים נקיות.</li>
+<li>העבירו את הקוסקוס לחלק העליון (המסננת) של הקוסקוסייר, הניחו מעל סיר המרק הרותח, ואדו במשך 20-30 דקות.</li>
+<li>הוציאו את הסולת חזרה לקערה, הוסיפו עוד שתיים וחצי עד שלוש כוסות מים, ופוררו שוב בעזרת מזלגות.</li>
+<li>החזירו את הקוסקוס למסננת מעל המרק לעוד 20 דקות של אידוי.</li>
+<li>כשהקוסקוס מוכן, צננו אותו מעט, העבירו לכלי הגשה או אחסון ופוררו פעם אחרונה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להוסיף כרעי עוף למרק.</li>
+<li>מומלץ להשתמש בקוסקוס דק.</li>
+<li>יש לשמור על יחס הגיוני בין המים לכמות הירקות במרק כדי שלא יהיה דליל מדי.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>כשהקוסקוס מוכן ומעט מתקרר, יש להעביר אותו לכלי אחסון ולפורר אותו.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-17" data-title="קציצות עוף וחציל קלוי ברוטב עגבניות" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.68s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 קציצות עוף וחציל קלוי ברוטב עגבניות</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לקציצות: 1/2 כוס שמן זית</li>
+<li>לקציצות: בצל גדול, קצוץ דק</li>
+<li>לקציצות: 2 שיני שום, קצוצות</li>
+<li>לקציצות: 1 כפית קארי</li>
+<li>לקציצות: 1 כפית כורכום</li>
+<li>לקציצות: 1/2 כפית פלפל שאטה גרוס</li>
+<li>לקציצות: 1 כפית מלח גס</li>
+<li>לקציצות: 1 כפית פלפל שחור גרוס</li>
+<li>לקציצות: 6 עגבניות, מגוררות</li>
+<li>לקציצות: 500 גרם חזה עוף</li>
+<li>לקציצות: צרור פטרוזיליה</li>
+<li>לקציצות: צרור כוסברה</li>
+<li>לקציצות: חציל בלאדי, שרוף על אש גלויה</li>
+<li>לרוטב: 1/2 כוס שמן זית</li>
+<li>לרוטב: בצל גדול, פרוס לרצועות</li>
+<li>לרוטב: 1 כפית קארי</li>
+<li>לרוטב: 1 כפית כורכום</li>
+<li>לרוטב: 1/2 כפית פלפל שחור גרוס</li>
+<li>לרוטב: 1/2 כפית מלח גס</li>
+<li>לרוטב: קורט סוכר</li>
+<li>לרוטב: 6 עגבניות מגוררות</li>
+<li>להגשה: חציל חתוך לקוביות</li>
+<li>להגשה: קמח לקימוח</li>
+<li>להגשה: שמן קנולה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מחבת</li>
+<li>מעבד מזון</li>
+<li>קערה</li>
+<li>מחבת נוספת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>לקציצות: מחממים שמן זית במחבת ומטגנים את הבצל עד להזהבה. מוסיפים שום קצוץ, קארי, כורכום, פלפל שאטה, מלח ופלפל שחור גרוס.</li>
+<li>מוסיפים את העגבניות המגוררות, מערבבים היטב ומסירים מהאש.</li>
+<li>במעבד מזון טוחנים את חזה העוף עם הפטרוזיליה והכוסברה לתערובת אחת.</li>
+<li>מעבירים לקערה, מוסיפים את תערובת הבצל והעגבניות ומערבבים היטב.</li>
+<li>מקלפים את החציל הקלוי, קוצצים היטב, מוסיפים לתערובת העוף ומערבבים.</li>
+<li>יוצרים מהתערובת קציצות.</li>
+<li>לרוטב: מחממים שמן זית במחבת ומטגנים את הבצל עד להזהבה.</li>
+<li>מוסיפים קארי, כורכום, פלפל שחור, מלח וסוכר, מערבבים היטב ומוסיפים את העגבניות המגוררות.</li>
+<li>מבשלים את הרוטב על להבה נמוכה כ-15 דקות, מוסיפים את הקציצות וממשיכים לבשל כ-30 דקות עד שהקציצות מבושלות.</li>
+<li>להגשה: מקמחים את קוביות החציל, מטגנים אותן במחבת עם שמן קנולה עמוק, מוציאים, מסננים משמן ומפזרים מעל המנה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>את החציל לקציצות שורפים על אש גלויה לפני הקילוף והקיצוץ.</li>
+<li>את קוביות החציל המטוגנות מוסיפים ממש לפני ההגשה כדי לשמור על המרקם.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מפזרים מעל המנה קוביות חציל מטוגנות לפני ההגשה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-18" data-title="קציצות פרגית ברוטב לימוני עם תפוחי אדמה" data-category="עוף" style="border-right-color: #e67e22; animation-delay: 0.72s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍗 קציצות פרגית ברוטב לימוני עם תפוחי אדמה</h3>
+      <div class="header-badges">
+        
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לקציצה: 1 בצל לבן קצוץ ומטוגן</li>
+<li>לקציצה: 3 פרוסות לחם רטוב וסחוט</li>
+<li>לקציצה: חופן פטרוזיליה קצוצה</li>
+<li>לקציצה: חופן סלרי קצוץ (עלים)</li>
+<li>לקציצה: 500 גרם פרגית טחונה</li>
+<li>לקציצה: מלח</li>
+<li>לקציצה: פלפל שחור כתוש טרי</li>
+<li>לציפוי: סולת</li>
+<li>לרוטב: 4 כפות שמן זית</li>
+<li>לרוטב: 1 בצל לבן פרוס</li>
+<li>לרוטב: 1 מנגולד חתוך גס</li>
+<li>לרוטב: 3 תפוחי אדמה קטנים קלופים וחצויים</li>
+<li>לרוטב: 1/2 כפית כורכום</li>
+<li>לרוטב: מלח</li>
+<li>לרוטב: פלפל שחור כתוש טרי</li>
+<li>לרוטב: 2 כוסות מים רותחים</li>
+<li>לרוטב: מיץ מלימון אחד</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>קערה</li>
+<li>סיר רחב</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מערבבים את כל מרכיבי הקציצות בקערה ומניחים בצד.</li>
+<li>בסיר רחב מחממים שמן זית ומטגנים את הבצל להזהבה.</li>
+<li>מוסיפים את המנגולד, תפוחי האדמה, הכורכום, מלח, פלפל שחור ואת המים הרותחים, ומבשלים כ-10 דקות.</li>
+<li>יוצרים קציצות מתערובת הפרגית ומצפים אותן בסולת.</li>
+<li>מוסיפים את הקציצות לסיר, מכסים ומבשלים על להבה נמוכה כשעה וחצי.</li>
+<li>מחממים תנור ל-180 מעלות, מסירים את המכסה ואופים כ-10 דקות.</li>
+<li>סוחטים מעל את מיץ הלימון ומגישים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ציפוי הסולת נותן לקציצות רכות מיוחדת.</li>
+<li>זאת ארוחה מלאה של קציצות פרגית ותפוחי אדמה ברוטב לימוני.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-בשר" class="category-header" style="color: #c0392b; border-bottom-color: #c0392b">🥩 בשר</h2>
+<div class="recipe-card" id="recipe-19" data-title="בצל ממולא" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.76s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 בצל ממולא</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>6 בצלים בינוניים</li>
+<li>1/2 כוס אורז</li>
+<li>250 גרם בשר טחון</li>
+<li>1 כפית פלפל שחור</li>
+<li>1 כפית מלח</li>
+<li>3 כפות שמן</li>
+<li>1 כפית מלח לרוטב</li>
+<li>1/2 כוס מיץ לימון</li>
+<li>1/2 כוס סילאן או רכז רימונים</li>
+<li>10 שיני שום שלמות (קלופות)</li>
+<li>מים (עד לכיסוי)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר</li>
+<li>קערה</li>
+<li>קערה נפרדת</li>
+<li>סיר רחב או סוטאז'</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קולפים את הבצלים וחורצים לאורכם חתך עד למרכז.</li>
+<li>חולטים את הבצלים בסיר עם מים רותחים כ-10 דקות, עד שהם מתרככים מעט. מוציאים ומצננים.</li>
+<li>מפרידים את גלדי הבצלים בעדינות לשכבות.</li>
+<li>בקערה מניחים את כל חומרי המילוי ומערבבים היטב.</li>
+<li>ממלאים כל גלד בצל בתערובת המילוי, בלי למלא עד הסוף ובלי לדחוס, מכיוון שהאורז תופח במהלך הבישול.</li>
+<li>מסדרים את הבצלים הממולאים בסיר רחב או סוטאז' זה לצד זה בצפיפות, ומפזרים ביניהם את שיני השום.</li>
+<li>מערבבים בקערה נפרדת את כל חומרי הרוטב: שמן, מלח, מיץ לימון וסילאן או רכז רימונים, ויוצקים על הבצלים.</li>
+<li>מוסיפים מים עד לכיסוי הבצלים, מביאים לרתיחה, מנמיכים את האש ומבשלים בסיר מכוסה כשעתיים, עד שהבצלים רכים והרוטב סמיך.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>לא למלא את גלדי הבצל עד הסוף ולא לדחוס את המילוי, כדי להשאיר מקום לאורז לתפוח.</li>
+<li>מומלץ להניח צלחת הפוכה על הבצלים בתוך הסיר בזמן הבישול כדי לשמור עליהם שלא יתפרקו.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-20" data-title="בשר בקר עם ערמונים" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.8s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 בשר בקר עם ערמונים</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>קילו וחצי בשר בקר מס 4 חתוך לקוביות (אפשר גם מס 5)</li>
+<li>2 בצלים</li>
+<li>1-2 כרישה (רק החלק הלבן)</li>
+<li>3-4 שיני שום</li>
+<li>1 שורש פטרוזיליה</li>
+<li>1-2 חבילות פטריות</li>
+<li>4-5 גזרים</li>
+<li>תפוחי אדמה קטנים (כמה שרוצים)</li>
+<li>חצי כוס אגוזי מלך קצוצים גס</li>
+<li>2 חבילות ערמונים בוואקום</li>
+<li>2 כפות קמח</li>
+<li>1 כף פלפל שחור גרוס</li>
+<li>שמן זית</li>
+<li>1 כפית כורכום</li>
+<li>3 כפות סילאן</li>
+<li>3 כפות רכז רימונים</li>
+<li>מעט רוטב מייפל טבעי</li>
+<li>מלח</li>
+<li>מעט אבקת מרק עוף/מרק בשר</li>
+<li>כ-4 כוסות מים רותחים</li>
+<li>צרור פטרוזיליה קצוצה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סוטאז'</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בקערה לשים את הבשר עם שתי כפות קמח ופלפל שחור גרוס ולערבב.</li>
+<li>בסוטאז' לחמם שמן זית ולסגור את הבשר, הכוונה לצרוב אותו עד שהוא ישנה צבע ולהוציא לקערה.</li>
+<li>לקצוץ בצל וכרישה ולטגן עד שיהיה זהוב/שקוף.</li>
+<li>להוסיף את השורש סלרי.</li>
+<li>להוסיף קוביות בשר.</li>
+<li>לתבל: כפית כורכום, 3 כפות סילאן, 3 כפות רכז רימונים, מעט רוטב מייפל טבעי, מלח, מעט אבקת מרק עוף/מרק בשר.</li>
+<li>לערבב את הבשר והבצלים עם התבלינים על אש נמוכה עוד ללא המים (זה פותח את התבלינים).</li>
+<li>להוסיף מים רותחים כ-4 כוסות ולערבב הכל יחד.</li>
+<li>אחרי שעה להוסיף את שאר הירקות.</li>
+<li>כל כמה זמן לערבב ולראות אם חסר מים או לא.</li>
+<li>זמן הבישול הוא סביב שעתיים וחצי. צריך לבדוק ולראות שהבשר רך.</li>
+<li>בחצי שעה האחרונה מוסיפים ערמונים חתוכים, אגוזי מלך וצרור פטרוזיליה קצוצה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>זה תבשיל ולא מרק, כך שלא צריך שיהיו הרבה מים. אבל מספיק כדי שיהיה רוטב.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-21" data-title="גמבות ממולאות" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.84s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 גמבות ממולאות</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>½ ק"ג בשר טחון</li>
+<li>1 כוס אורז</li>
+<li>1 בצל גדול, קצוץ</li>
+<li>פטרוזיליה קצוצה</li>
+<li>גמבות למילוי</li>
+<li>כ-1 כף פפריקה מתוקה</li>
+<li>½ כפית פפריקה חריפה</li>
+<li>¼ - ½ כפית פלפל שחור (למילוי)</li>
+<li>מעט מלח (למילוי)</li>
+<li>מעט כמון (פחות מכפית)</li>
+<li>2 רסק עגבניות</li>
+<li>עגבניות מרוסקות (אופציונלי)</li>
+<li>פלפל שחור (לרוטב)</li>
+<li>אבקת מרק עוף</li>
+<li>קצת שמן</li>
+<li>מעט מלח (לרוטב)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>לבשל 1 כוס אורז עם כוס ורבע מים רותחים עד לספיגת המים (בישול חלקי).</li>
+<li>בזמן שהאורז מתבשל, לקצוץ בצל גדול ולטגן אותו.</li>
+<li>בקערה גדולה, לערבב את הבשר הטחון, האורז המבושל למחצה, הבצל המטוגן (עם השמן מהמחבת) ופטרוזיליה קצוצה.</li>
+<li>לתבל את תערובת המילוי בפפריקה מתוקה, פפריקה חריפה, פלפל שחור, מלח ומעט כמון. לערבב היטב לאיחוד.</li>
+<li>לשטוף את הגמבות ולחתוך את ראשן.</li>
+<li>למלא כל גמבה בתערובת המילוי ולסדר אותן בצפיפות בסיר.</li>
+<li>בקערה נפרדת, להכין את הרוטב: לערבב רסק עגבניות, פלפל שחור, אבקת מרק עוף, מעט שמן ומעט מלח.</li>
+<li>בעזרת כף, לשפוך את הרוטב מעל כל פלפל ממולא. את שארית הרוטב לשפוך לצדדים, בתוך הסיר.</li>
+<li>הנוזלים צריכים לכסות בערך עד חצי מגובה הפלפלים.</li>
+<li>לבשל על אש קטנה למשך שעה לפחות.</li>
+<li>במהלך הבישול, יש לנער את הסיר מדי פעם ובעזרת כף להרטיב את הפלפלים עם הרוטב מתחתית הסיר.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>לא להגזים עם הפפריקה המתוקה כי היא עלולה להפוך למרירה.</li>
+<li>המתכון מומלץ עם גמבות ולא עם פלפלים ירוקים.</li>
+<li>כדי למנוע הידבקות לתחתית הסיר, ניתן לפזר את 'ראשי' הגמבות (ללא הגבעול) בתחתית הסיר לפני סידור הממולאים.</li>
+<li>אפשר להוסיף עגבניות מרוסקות לרוטב.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-22" data-title="ממולאים - פלפל ממולא" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.88s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 ממולאים - פלפל ממולא</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>כוס אורז, מבושל חצי בישול</li>
+<li>חצי ק"ג בשר טחון</li>
+<li>1 בצל גדול או 2 בינוניים, קצוצים ומטוגנים</li>
+<li>פטרוזיליה קצוצה</li>
+<li>פלפל שחור (לפי הטעם)</li>
+<li>פפריקה מתוקה (לפי הטעם)</li>
+<li>מעט פפריקה חריפה (לפי הטעם)</li>
+<li>כמון (לפי הטעם)</li>
+<li>מלח (לפי הטעם)</li>
+<li>2 רסק עגבניות</li>
+<li>אבקת מרק עוף</li>
+<li>שמן</li>
+<li>מים חמים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר</li>
+<li>תבנית פיירקס, רק לאחר הבישול על הגז (אופציונלי)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מטגנים את הבצל הקצוץ.</li>
+<li>מבשלים את האורז חצי בישול ומסננים מהמים.</li>
+<li>בקערה, מערבבים את הבשר הטחון, הבצל המטוגן (עם השמן מהמחבת), האורז המסונן והפטרוזיליה הקצוצה.</li>
+<li>מתבלים את תערובת המילוי בפלפל שחור, פפריקה מתוקה, מעט פפריקה חריפה, כמון ומלח. מערבבים היטב תוך פירור הבשר עד לקבלת תערובת אחידה.</li>
+<li>מרוקנים את הירקות המיועדים למילוי (פלפלים, כרוב וכו').</li>
+<li>מכינים את הרוטב: בקערה נפרדת, מערבבים 2 רסק עגבניות, פלפל שחור, אבקת מרק עוף, שמן ומעט מלח. מוסיפים מים חמים ומערבבים עד להמסה מלאה.</li>
+<li>ממלאים את הירקות המרוקנים בתערובת המילוי.</li>
+<li>מניחים את הירקות הממולאים על תחתית סיר.</li>
+<li>שופכים את הרוטב לסיר עד לגובה של כמחצית מגובה הירקות.</li>
+<li>מבשלים על אש נמוכה למשך כשעה לפחות.</li>
+<li>בודקים שהמנה מוכנה על ידי נעיצת מזלג בירק; אם הוא נכנס בקלות, המנה מוכנה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>להשחמה, ניתן להכניס את הסיר לתנור בסוף הבישול (אם הסיר מתאים לכך).</li>
+<li>לחילופין, לאחר הבישול על הגז, ניתן להעביר את הממולאים לתבנית פיירקס ולהכניס לתנור עד שהחלק העליון הופך קריספי.</li>
+<li>יש להיזהר לא לייבש או לשרוף את המנה בזמן ההשחמה בתנור.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-23" data-title="פלפלים/קישואים ממולאים של דודה אורלי" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.92s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 פלפלים/קישואים ממולאים של דודה אורלי</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דודה אורלי (PDF)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חצי קילו בשר טחון</li>
+<li>חצי כוס אורז</li>
+<li>רבע זר פטרוזיליה</li>
+<li>תפוח אדמה</li>
+<li>2 בצלים (אחד גדול ואחד בגודל של התפו"א)</li>
+<li>1 ביצה</li>
+<li>3-5 שיני שום</li>
+<li>2 חבילות רסק עגבניות (200 גרם)</li>
+<li>2 כפות שמן קנולה</li>
+<li>חצי כפית מלח</li>
+<li>חצי כפית פלפל שחור (לתערובת)</li>
+<li>חצי כפית כורכום</li>
+<li>קצה כפית זנגביל (ג'ינג'ר יבש)</li>
+<li>קצה כפית אגוז מוסקט</li>
+<li>קצה כפית קינמון</li>
+<li>כפית פפריקה חריפה</li>
+<li>כפית כמון</li>
+<li>כף פפריקה מתוקה</li>
+<li>כף וחצי של מרק עוף</li>
+<li>חצי כפית פלפל שחור (לרוטב)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר רחב (עדיף שאפשר להכניס לתנור)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מגרדים את תפוח האדמה דק, נותנים לו כמה דקות להוציא נוזלים ושופכים את מרביתם.</li>
+<li>קוצצים את הפטרוזיליה.</li>
+<li>קוצצים דק דק בצל אחד (בגודל תפו"א) ומטגנים.</li>
+<li>מכינים קערה עם הבשר, תבלינים לבשר (מלח, פלפל שחור, כורכום, זנגביל, אגוז מוסקט, קינמון), תפוח האדמה המגורד והביצה.</li>
+<li>מערבבים ולשים את תכולת הקערה.</li>
+<li>מבשלים חצי כוס אורז על אש קטנה עם כוס ורבע מים רותחים (ללא תבלינים) עד לספיגת המים (אמור להיות חצי מוכן).</li>
+<li>מטגנים בצל גדול נוסף.</li>
+<li>מערבבים בקערה את האורז החצי מוכן, הבצל המטוגן ותערובת הבשר. מוסיפים את התבלינים הנוספים (פפריקה חריפה וכמון).</li>
+<li>מרוקנים את תכולת הירקות (פלפלים/קישואים) וממלאים בתערובת.</li>
+<li>מניחים את הירקות הממולאים בסיר רחב.</li>
+<li>מכינים בקערה את התבלינים לרוטב (פפריקה מתוקה, מרק עוף, פלפל שחור) ומוסיפים מים (כ-4 כוסות), רסק עגבניות ושום.</li>
+<li>שופכים את הרוטב לסיר הרחב עד לכיסוי של 90%-100% מהירקות. מומלץ לטעום את הרוטב ולתקן תיבול.</li>
+<li>מבשלים את הסיר על הגז עד לצמצום של חצי מהנוזלים.</li>
+<li>מכניסים את הסיר לתנור לאפייה (יש לוודא שנשאר רוטב ברבע מגובה הסיר). אפשרות 1: 40 דקות אפייה ללא מכסה. אפשרות 2: 30 דקות עם נייר כסף ו-30 דקות בלי.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>התבלינים לבשר נכונים לכל סוג של קציצות מבשר טחון.</li>
+<li>אם הסיר לא מתאים לתנור, אפשר לעטוף את הידיות בנייר כסף.</li>
+<li>ישנן שתי אפשרויות לאפייה בתנור: 40 דקות ללא מכסה, או 30 דקות עם כיסוי נייר כסף ו-30 דקות נוספות ללא כיסוי.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-24" data-title="קציצות בשר ברוטב שזיפים" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 0.96s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 קציצות בשר ברוטב שזיפים</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דורינה (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים קצוצים (אחד לרוטב ואחד לבשר)</li>
+<li>חצי קילו בשר טחון</li>
+<li>ביצה אחת</li>
+<li>2-3 כפות פירורי לחם או תפוח אדמה בינוני מגורר קטן בפומפיה (על החלק המשונן שהופך את זה למחית)</li>
+<li>כפית שטוחה ראס אל חנות</li>
+<li>פלפל שחור</li>
+<li>מלח</li>
+<li>מעט שמן קנולה</li>
+<li>3 בצלים חתוכים לרצועות (לרוטב)</li>
+<li>5 שזיפים יבשים ללא גלעין וחצויים</li>
+<li>אבקת מרק עוף</li>
+<li>מעט כורכום</li>
+<li>מים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מתחילים מהכנת כדורי הבשר: מטגנים בצל קצוץ קטן עד להשחמה קלה.</li>
+<li>מוסיפים את השמן מהמחבת לבשר הטחון.</li>
+<li>מוסיפים ביצה אחת.</li>
+<li>מוסיפים 2-3 כפות פירורי לחם או תפוח אדמה בינוני מגורר קטן בפומפיה (על החלק המשונן שהופך את זה למחית).</li>
+<li>מתבלים את הבשר בכפית שטוחה של ראס אל חנות, פלפל שחור ומלח.</li>
+<li>מערבבים הכל עם הידיים (לשים) ונותנים לזה לנוח בצד לפחות 15 דקות.</li>
+<li>הכנת הרוטב: מטגנים את רצועות הבצל.</li>
+<li>מוסיפים את השזיפים החצויים וממשיכים לטגן.</li>
+<li>מוסיפים מרק עוף, פלפל שחור, מלח ומעט כורכום ומטגנים הכל יחד.</li>
+<li>מוסיפים מים ומביאים לרתיחה.</li>
+<li>בינתיים מייצרים כדורי בשר בגודל של כדור פינג פונג בערך.</li>
+<li>כשהמים רותחים, מוסיפים את הקציצות.</li>
+<li>מבשלים על אש נמוכה כשעה וחצי.</li>
+<li>במהלך הבישול מידי פעם להטות את הסיר מצד לצד כדי שהנוזלים יכסו את הקציצות (לא לערבב עם כף כדי לא לפצוע את הקציצות).</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>בשר טחון מומלץ: בשר מספר 4.</li>
+<li>אופן הכנת כדורי הבשר זהה לקציצות עם אפונה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-25" data-title="קציצות בשר וברוקולי" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 1.0s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 קציצות בשר וברוקולי</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 ראש ברוקולי קטן (פרחים וגזעים)</li>
+<li>1 תפוח אדמה גדול חתוך לקוביות קטנות</li>
+<li>1 כרישה גדולה קצוצה</li>
+<li>1/2 קילו בשר טחון</li>
+<li>1/2 כוס סולת</li>
+<li>1/2 כוס כוסברה או פטרוזיליה קצוצה</li>
+<li>2 ביצים</li>
+<li>1 כפית מלח</li>
+<li>1/2 כפית פלפל שחור</li>
+<li>לאפייה: שמן זית</li>
+<li>לאפייה: מעט סולת</li>
+<li>לטיגון: מעט שמן זית</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר</li>
+<li>מסננת</li>
+<li>מועך תפוחי אדמה</li>
+<li>קערה</li>
+<li>תנור</li>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>מחבת רחבה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בסיר עם מים וכפית מלח מבשלים יחד את קוביות תפוח האדמה, הברוקולי והכרישה עד שהם מתרככים היטב.</li>
+<li>מסננים, מצננים ומועכים בעזרת מועך תפוחי אדמה לפירה.</li>
+<li>מוסיפים לפירה הירקות את הבשר הטחון, הכוסברה או הפטרוזיליה, הסולת, הביצים, המלח והפלפל.</li>
+<li>לשים היטב את התערובת ויוצרים קציצות.</li>
+<li>לאפייה: מחממים תנור ל-180 מעלות.</li>
+<li>משמנים בנדיבות נייר אפייה בשמן זית ומפזרים עליו מעט סולת.</li>
+<li>מניחים את הקציצות על נייר האפייה, מזלפים עליהן עוד מעט שמן זית ואופים חצי שעה מצד אחד.</li>
+<li>הופכים את הקציצות ואופים עוד כ-20 דקות מהצד השני.</li>
+<li>לטיגון: מחממים מעט שמן זית במחבת רחבה על חום בינוני-נמוך ומטגנים את הקציצות עד להזהבה יפה משני הצדדים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר לבחור בין אפייה לטיגון לפי ההעדפה.</li>
+<li>כדאי לצנן מעט את תערובת הירקות לפני הערבוב עם הבשר.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-26" data-title="קציצות עם אפונה" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 1.04s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 קציצות עם אפונה</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דורינה (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים קצוצים (אחד לרוטב ואחד לבשר)</li>
+<li>חצי קילו בשר טחון</li>
+<li>ביצה אחת</li>
+<li>2-3 כפות פירורי לחם או תפוח אדמה בינוני מגורר קטן בפומפיה (על החלק המשונן שהופך את זה למחית)</li>
+<li>כפית שטוחה ראס אל חנות</li>
+<li>פלפל שחור</li>
+<li>מלח</li>
+<li>מעט שמן קנולה</li>
+<li>שקית אפונה קפואה</li>
+<li>אבקת מרק עוף</li>
+<li>כורכום (יש להיזהר עם הכמות)</li>
+<li>מים חמים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מתחילים מהכנת כדורי הבשר: מטגנים בצל קצוץ קטן עד להשחמה קלה.</li>
+<li>מוסיפים את השמן מהמחבת לבשר הטחון.</li>
+<li>מוסיפים ביצה אחת.</li>
+<li>מוסיפים 2-3 כפות פירורי לחם או תפוח אדמה בינוני מגורר קטן בפומפיה (על החלק המשונן שהופך את זה למחית).</li>
+<li>מתבלים את הבשר בכפית שטוחה של ראס אל חנות, פלפל שחור ומלח.</li>
+<li>מערבבים הכל עם הידיים (לשים) ונותנים לזה לנוח בצד לפחות 15 דקות.</li>
+<li>הכנת הרוטב: בסיר גדול שמים שמן, בצל קצוץ, את האפונה הקפואה, אבקת מרק עוף, כורכום, פלפל ומלח (יש להיזהר עם כמות הכורכום).</li>
+<li>מוסיפים מים חמים לסיר בגובה כזה שהקציצות בעתיד יהיו חצי בתוך המים וחצי בחוץ.</li>
+<li>נותנים למים לרתוח.</li>
+<li>בינתיים מייצרים כדורי בשר בגודל של כדור פינג פונג בערך.</li>
+<li>מכניסים את כדורי הבשר לרוטב בצורה מעגלית.</li>
+<li>מבשלים על אש נמוכה כשעה וחצי.</li>
+<li>במהלך הבישול מידי פעם להטות את הסיר מצד לצד כדי שהנוזלים יכסו את הקציצות (לא לערבב עם כף כדי לא לפצוע את הקציצות).</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>בשר טחון מומלץ: בשר מספר 4.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-27" data-title="קציצות עם שומר" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 1.08s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 קציצות עם שומר</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לתערובת הקציצות: 1/2 קילו בשר בקר טחון עם מעט שומן</li>
+<li>לתערובת הקציצות: 1 בצל גדול לבן</li>
+<li>לתערובת הקציצות: 1/2 כוס פטרוזיליה או כוסברה קצוצה</li>
+<li>לתערובת הקציצות: 1 כף גדושה קטשופ</li>
+<li>לתערובת הקציצות: 1 כפית כמון</li>
+<li>לתערובת הקציצות: 1/2 כפית כורכום</li>
+<li>לתערובת הקציצות: 1/2 כפית קינמון</li>
+<li>לתערובת הקציצות: 1/2 כפית פלפל שחור</li>
+<li>לתערובת הקציצות: 1/4 כפית הל</li>
+<li>לתערובת הקציצות: 1 כפית מלח</li>
+<li>לתערובת הקציצות: 1/2 כפית סודה לשתייה</li>
+<li>לתערובת הקציצות: 2 כפות פירורי לחם</li>
+<li>לתערובת הקציצות: 1 כף שמן</li>
+<li>לתערובת הקציצות: 1 ביצה</li>
+<li>לציפוי: 1 כוס סולת</li>
+<li>לציפוי: 1 כפית מלח</li>
+<li>לציפוי: 2 ביצים טרופות</li>
+<li>לירקות בסיר: 1-2 שומר חצוי לרבעים או שמיניות</li>
+<li>לירקות בסיר: 1 בצל סגול גדול חתוך לשמיניות</li>
+<li>לירקות בסיר: 1.5 כוסות אפונה עדינה</li>
+<li>לירקות בסיר: 8-10 עלי סלרי גדולים</li>
+<li>לרוטב הסיר: 1/2 ליטר מים חמים</li>
+<li>לרוטב הסיר: מיץ סחוט מלימון שלם</li>
+<li>לרוטב הסיר: גרידה מלימון אחד</li>
+<li>לרוטב הסיר: 1/4 כוס שמן זית</li>
+<li>לרוטב הסיר: 1 כפית מלח</li>
+<li>לרוטב הסיר: 1 כפית כמון</li>
+<li>לרוטב הסיר: 1 כפית פלפל שחור</li>
+<li>לרוטב הסיר: 2 ס"מ שורש כורכום קצוץ, או עוד כפית כורכום</li>
+<li>לרוטב הסיר: מעט פטרוזיליה, נענע או כוסברה קצוצה דקיק</li>
+<li>לטיגון: רבע כוס שמן</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>בלנדר או מעבד מזון</li>
+<li>קערה</li>
+<li>2 קערות נפרדות</li>
+<li>סיר סוטאז'</li>
+<li>תנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>טוחנים את הבצל הלבן עם הפטרוזיליה או הכוסברה בבלנדר, או קוצצים דק מאוד.</li>
+<li>מוסיפים לבשר את תערובת הבצל, הקטשופ, הכמון, הכורכום, הקינמון, הפלפל השחור, ההל, המלח, הסודה לשתייה, פירורי הלחם, כף השמן וביצה אחת.</li>
+<li>מערבבים היטב בידיים עד לקבלת עיסה אחידה ויוצרים קציצות.</li>
+<li>מערבבים בקערה אחת את הסולת עם כפית מלח, ובקערה שנייה טורפים את 2 הביצים.</li>
+<li>מצפים את הקציצות מכל הכיוונים בסולת המומלחת ומעבירים למקרר לכ-20 דקות להתייצבות.</li>
+<li>מלהיטים סיר סוטאז' עם רבע כוס שמן.</li>
+<li>טובלים כל קציצה מצופה בסולת בביצים הטרופות, מנערים מעט ומניחים בסיר במרווחים יפים.</li>
+<li>משבצים בין הקציצות את רבעי השומר ואת הבצל הסגול.</li>
+<li>מטגנים כ-5 דקות על אש בינונית, ואז הופכים בעדינות את הקציצות, השומר והבצל.</li>
+<li>מערבבים בקערה את כל חומרי הרוטב ויוצקים לתוך הסיר.</li>
+<li>מפזרים מעל את האפונה העדינה ואת עלי הסלרי, מכסים, מנמיכים את האש ומבשלים כ-40 דקות.</li>
+<li>לסיום אופציונלי, מעבירים לתנור שחומם מראש ל-220 מעלות ללא מכסה לכ-10 דקות לקבלת צבע יפה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>מי שלא רוצה להשתמש בקטשופ יכול להחליף בתערובת של כף רסק עגבניות, חצי שן שום כתושה, כפית שמן זית וכפית סוכר.</li>
+<li>לא לוותר על עלי הסלרי.</li>
+<li>אפשר לסיים את הבישול בתנור חם מאוד לקבלת צבע שחום ויפה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-28" data-title="שערות קדאיף במילוי בשר" data-category="בשר" style="border-right-color: #c0392b; animation-delay: 1.12s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥩 שערות קדאיף במילוי בשר</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 חבילת שערות קדאיף</li>
+<li>שמן</li>
+<li>500 גרם בשר טחון</li>
+<li>1 בצל קצוץ</li>
+<li>2-3 שיני שום קצוצות</li>
+<li>1 כפית שטוחה מלח</li>
+<li>1/2 כפית פלפל</li>
+<li>1/2 כפית שטוחה כמון</li>
+<li>1/2 כפית פפריקה</li>
+<li>1/2 כפית בהרט</li>
+<li>קורט קינמון</li>
+<li>צנוברים או שקדים קלויים</li>
+<li>1 כוס מיץ תפוזים</li>
+<li>2 כפות שטוחות סוכר חום</li>
+<li>מיץ מחצי לימון</li>
+<li>פיסטוק קלוי וקצוץ לקישוט</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>קערה</li>
+<li>תבנית עגולה או מלבנית קטנה</li>
+<li>מחבת</li>
+<li>סיר קטן</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מפשירים את שערות הקדאיף. בקערה, מטפטפים שמן ופותחים את השערות עם הידיים עד שהן מצופות בשמן ומופרדות.</li>
+<li>במחבת, מטגנים את הבצל והשום. מוסיפים את הבשר הטחון ומפוררים עד שהוא משנה את צבעו.</li>
+<li>מוסיפים את התבלינים (מלח, פלפל, כמון, פפריקה, בהרט וקינמון), מערבבים ומורידים מהאש.</li>
+<li>מוסיפים לתערובת הבשר את הצנוברים או השקדים הקלויים.</li>
+<li>מחממים תנור ל-180 מעלות ומשמנים מעט תבנית.</li>
+<li>משטחים חצי מכמות שערות הקדאיף בתחתית התבנית.</li>
+<li>מפזרים מעל את מלית הבשר באופן אחיד.</li>
+<li>מכסים במחצית השנייה של שערות הקדאיף ומהדקים.</li>
+<li>אופים בתנור החם כ-20 דקות, עד להזהבה.</li>
+<li>בזמן האפייה, מכינים סירופ: מרתיחים בסיר קטן מיץ תפוזים, סוכר חום ומיץ לימון.</li>
+<li>כשהמאפה יוצא מהתנור, יוצקים עליו את הסירופ החם.</li>
+<li>במקביל, קולים פיסטוק קצוץ על מחבת יבשה עד להשחמה קלה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להשתמש בתבנית עגולה או מלבנית קטנה.</li>
+<li>ניתן להשתמש בצנוברים או בשקדים קלויים למלית, לפי העדפה.</li>
+<li>הוספת קורט קינמון למלית היא אופציונלית.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מפזרים את הפיסטוק הקלוי מלמעלה ממש לפני ההגשה.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-דגים" class="category-header" style="color: #2980b9; border-bottom-color: #2980b9">🐟 דגים</h2>
+<div class="recipe-card" id="recipe-29" data-title="דג לבן של אבא" data-category="דגים" style="border-right-color: #2980b9; animation-delay: 1.16s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🐟 דג לבן של אבא</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דורינה (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>דג ים לבן (באס, דניס, לברק או בר ים)</li>
+<li>עשבי תיבול (כוסברה, לימונית, פטרוזיליה, מרווה)</li>
+<li>מיץ מתפוז או קלמנטינה אחת</li>
+<li>כפית חרדל</li>
+<li>מיץ לימון</li>
+<li>2 שיני שום</li>
+<li>בצל אחד (סגול או רגיל), פרוס דק</li>
+<li>רבע כוס שמן זית</li>
+<li>פלפל חריף קטן אחד</li>
+<li>כפית מלח</li>
+<li>רבע כפית פלפל</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית אפייה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מערבבים את כל חומרי המרינדה יחד בתבנית: עשבי תיבול, מיץ תפוז/קלמנטינה, חרדל, מיץ לימון, שום, בצל, שמן זית, פלפל חריף, מלח ופלפל.</li>
+<li>מניחים את הדגים (טריים או מופשרים) בתוך המרינדה ומשרים במקרר לפחות שעתיים. יש להפוך אותם מדי פעם.</li>
+<li>מחממים תנור ל-220 מעלות.</li>
+<li>מניחים את הדגים בתבנית כשהעור כלפי מעלה וצולים במשך כ-40 דקות לכל היותר, או עד שהעור משחים.</li>
+<li>מוציאים מהתנור ומגישים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ניתן להשרות את הדגים במרינדה למשך לילה שלם במקרר.</li>
+<li>מומלץ לצלות פחות מ-40 דקות כדי להימנע מייבוש יתר של הדג.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-30" data-title="דג מרוקאי" data-category="דגים" style="border-right-color: #2980b9; animation-delay: 1.2s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🐟 דג מרוקאי</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>דג (לפי מספר הסועדים)</li>
+<li>2 גזרים</li>
+<li>1 גמבה</li>
+<li>2 ראשי שום</li>
+<li>2 זרי כוסברה קצוצים</li>
+<li>חומץ (להשריה)</li>
+<li>לימון (להשריה)</li>
+<li>1/2 כפית כורכום</li>
+<li>1 כפית מלח</li>
+<li>1.5-2 כפיות פפריקה מתוקה</li>
+<li>מעט שמן</li>
+<li>כ-1 כוס מים רותחים</li>
+<li>פלפל חריף מיובש (סודניה), ואם אין - שאטה, אפשר גם פלפל ירוק חריף חי</li>
+<li>גרגרי חומוס קפואים (אופציונלי)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר רחב שוליים</li>
+<li>קערה</li>
+<li>כוס</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בסיר רחב שוליים, מניחים פרוסות דקות של 2 גזרים, רצועות גמבה, ראש שום אחד קלוף ופרוס, וזר כוסברה אחד קצוץ.</li>
+<li>בקערה נפרדת, משרים את הדג עם חומץ ולימון למשך כ-15 דקות.</li>
+<li>לאחר ההשריה, שוטפים היטב את הדג במים ומניחים אותו בסיר על מצע הירקות.</li>
+<li>בכוס, מערבבים חצי כפית כורכום, כפית מלח, כפית וחצי עד שתי כפיות פפריקה מתוקה ומעט שמן.</li>
+<li>מוסיפים מים רותחים עד למילוי הכוס ומערבבים היטב.</li>
+<li>שופכים את הרוטב מהכוס באופן שווה על הדגים.</li>
+<li>מפזרים מעל הדגים זר כוסברה קצוץ נוסף וראש שום נוסף פרוס לפרוסות.</li>
+<li>מכסים את הסיר ומבשלים על אש קטנה למשך כ-40 דקות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אם מבשלים יותר מארבעה דגים, יש להשתמש ביותר מכוס אחת של נוזלים.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-31" data-title="דג סלמון עם פקאנים" data-category="דגים" style="border-right-color: #2980b9; animation-delay: 1.24s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🐟 דג סלמון עם פקאנים</h3>
+      <div class="header-badges">
+        <span class="badge dairy">חלבי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>נתח דג סלמון</li>
+<li>מלח</li>
+<li>פלפל שחור</li>
+<li>כ-30 גרם חמאה</li>
+<li>כ-2 כפות דבש</li>
+<li>כ-1 כף חרדל דיז'ון</li>
+<li>כ-1 כוס פקאנים, קצוצים</li>
+<li>כ-1 כוס עלי פטרוזיליה, קצוצים</li>
+<li>3-4 כפות פירורי לחם</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>מיקרוגל</li>
+<li>מברשת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מרפדים תבנית בנייר אפייה.</li>
+<li>שוטפים את נתח הסלמון ומניחים אותו על התבנית כשהחלק הוורוד כלפי מעלה.</li>
+<li>מתבלים את הדג במעט מלח ופלפל שחור.</li>
+<li>בקערה קטנה המתאימה למיקרוגל, ממיסים יחד חמאה, דבש וחרדל ומערבבים היטב.</li>
+<li>מורחים את הרוטב באופן אחיד על הדג באמצעות מברשת.</li>
+<li>בקערה נפרדת, מערבבים את הפקאנים הקצוצים, הפטרוזיליה הקצוצה ופירורי הלחם.</li>
+<li>מפזרים את תערובת הציפוי מעל הרוטב שעל הדג.</li>
+<li>מכניסים לתנור שחומם מראש ל-175-180 מעלות למשך כחצי שעה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדי לבדוק אם הדג מוכן, ניתן לחתוך חתיכה קטנה במרכזו ולוודא שהגיע למידת העשייה הרצויה.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-מרקים" class="category-header" style="color: #d4a017; border-bottom-color: #d4a017">🍲 מרקים</h2>
+<div class="recipe-card" id="recipe-32" data-title="מרק ירקות" data-category="מרקים" style="border-right-color: #d4a017; animation-delay: 1.28s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍲 מרק ירקות</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים</li>
+<li>3 גזרים</li>
+<li>2-3 זוקיני או קישוא רגיל</li>
+<li>1 בטטה בינונית</li>
+<li>חתיכת דלעת</li>
+<li>1 שורש פטרוזיליה</li>
+<li>סלרי</li>
+<li>מעט כרובית</li>
+<li>כוסברה</li>
+<li>פטרוזיליה</li>
+<li>מעט שמיר</li>
+<li>שמן לאידוי</li>
+<li>כ-2 כפות אבקת מרק עוף</li>
+<li>רבע כף כורכום</li>
+<li>כחצי כף מלח</li>
+<li>רבע כף או יותר פלפל שחור</li>
+<li>מים למילוי ¾ סיר</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר גדול</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קוצצים את הבצלים לקוביות ומאדים אותם בסיר גדול עם שמן.</li>
+<li>מוסיפים את הגזר, הבטטה, הדלעת, הקישואים ואת שורש הפטרוזיליה קלוף וקצוץ. ממשיכים לאדות הכל יחד תוך כדי ערבוב.</li>
+<li>מוסיפים את התבלינים: אבקת מרק עוף, כורכום, מלח ופלפל שחור, ומערבבים היטב.</li>
+<li>מוסיפים מים עד לגובה של שלושת רבעי הסיר.</li>
+<li>מבשלים כשעה או יותר, עד שהירקות מתרככים.</li>
+<li>לאחר שהירקות התרככו, מוסיפים את פרחי הכרובית וממשיכים בבישול.</li>
+<li>לקראת סוף הבישול מוסיפים את עשבי התיבול הקצוצים (כוסברה, פטרוזיליה ושמיר).</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ניתן לשדרג את המרק על ידי הוספת אפונה.</li>
+<li>להעשרת הטעם, מומלץ להוסיף שני כרעיים למרק במהלך הבישול.</li>
+<li>כמויות התבלינים הן המלצה, תמיד אפשר להוסיף עוד לפי הטעם.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-33" data-title="מרק כרובית, ברוקולי ואפונה" data-category="מרקים" style="border-right-color: #d4a017; animation-delay: 1.32s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍲 מרק כרובית, ברוקולי ואפונה</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (תמונה)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>4 כפות שמן זית</li>
+<li>2 בצלים בינוניים, קצוצים</li>
+<li>4 שיני שום, קצוצות</li>
+<li>1 סלסלת פטריות, פרוסות</li>
+<li>1 ראש ברוקולי, חתוך לפרחים</li>
+<li>1 ראש כרובית, חתוך לפרחים</li>
+<li>2 כוסות אפונה קפואה</li>
+<li>2-3 כפות רוטב סויה</li>
+<li>1 כוס אגוזי קשיו, מושרים במים רותחים לשעה</li>
+<li>250 מ"ל חלב קוקוס</li>
+<li>מלח ופלפל שחור לפי הטעם</li>
+<li>מעט אגוז מוסקט</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>בלנדר מוט או מעבד מזון</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בסיר גדול, מחממים שמן זית על אש בינונית. מוסיפים בצל ושום ומטגנים עד להזהבה.</li>
+<li>מוסיפים את הפטריות הפרוסות וממשיכים לטגן מספר דקות.</li>
+<li>מוסיפים לסיר את הברוקולי, הכרובית והאפונה. יוצקים מים רותחים עד לכיסוי הירקות.</li>
+<li>מתבלים ברוטב סויה, מלח, פלפל ואגוז מוסקט. מביאים לרתיחה.</li>
+<li>מנמיכים את האש, מכסים את הסיר ומבשלים כחצי שעה עד שהירקות רכים מאוד.</li>
+<li>מוסיפים את אגוזי הקשיו המושרים (ללא מי ההשריה) ואת חלב הקוקוס. מבשלים 10 דקות נוספות.</li>
+<li>טועמים ומתקנים תיבול במידת הצורך.</li>
+<li>בעזרת בלנדר מוט או במעבד מזון, טוחנים את המרק עד לקבלת מרקם חלק וקרמי.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>לקבלת מרק עשיר ובעל טעם דומיננטי יותר, ניתן להחליף את חלב הקוקוס בקרם קוקוס.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-34" data-title="מרק עדשים ירוקות/חומות" data-category="מרקים" style="border-right-color: #d4a017; animation-delay: 1.36s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍲 מרק עדשים ירוקות/חומות</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>כוס - כוס וחצי עדשים שטופות ומושרות</li>
+<li>1 בצל גדול או 2 בינוניים, קצוצים</li>
+<li>3-4 זוקיני / קישוא, קצוצים לקוביות</li>
+<li>4 גזרים, חתוכים לקוביות</li>
+<li>1 בטטה, חתוכה לקוביות</li>
+<li>2-3 גבעולי סלרי ללא העלים, קצוצים</li>
+<li>1 קופסה עגבניות מרוסקות</li>
+<li>1 רסק עגבניות</li>
+<li>צרור כוסברה קצוצה</li>
+<li>חצי כפית - כפית שטוחה סוכר</li>
+<li>פלפל שחור</li>
+<li>מלח</li>
+<li>מעט כמון</li>
+<li>מעט פפריקה מתוקה (מרוקאית)</li>
+<li>אבקת מרק עוף</li>
+<li>שמן לטיגון</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>משרים את העדשים במים לפחות שעה-שעתיים.</li>
+<li>קוצצים את הבצל ושאר הירקות (זוקיני/קישוא, גזר, בטטה, סלרי).</li>
+<li>מחממים שמן בסיר ומטגנים את הבצל עד שנהיה שקוף.</li>
+<li>מוסיפים את שאר הירקות הקצוצים ומאדים עד שהם מתרככים מעט.</li>
+<li>מוסיפים עגבניות מרוסקות, רסק עגבניות וסוכר. מערבבים ומוסיפים את שאר התבלינים (פלפל שחור, מלח, כמון, פפריקה, אבקת מרק עוף).</li>
+<li>מוסיפים מים עד ל-3/4 גובה הסיר.</li>
+<li>מביאים לרתיחה על אש גבוהה, ולאחר מכן מנמיכים לאש נמוכה ומבשלים מעל שעה.</li>
+<li>לקראת סוף הבישול, מוסיפים צרור כוסברה קצוצה.</li>
+<li>בודקים את רכות הירקות והעדשים ואת התיבול. במידת הצורך, מוסיפים עוד זמן בישול.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>מומלץ להשרות את העדשים לפחות שעה-שעתיים לפני הבישול.</li>
+<li>יתכן ויהיה צורך להוסיף עוד זמן בישול בהתאם לרכות הירקות והעדשים.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-35" data-title="מרק עדשים כתומות" data-category="מרקים" style="border-right-color: #d4a017; animation-delay: 1.4000000000000001s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍲 מרק עדשים כתומות</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים, קצוצים</li>
+<li>3/4 שקית עדשים כתומות קטנה</li>
+<li>4-5 גזרים, קצוצים לקוביות</li>
+<li>דלעת, קצוצה לקוביות</li>
+<li>1 בטטה בינונית, קצוצה לקוביות</li>
+<li>כמה גבעולי סלרי, קצוצים</li>
+<li>2 כפות אבקת מרק עוף</li>
+<li>1/2 כפית כורכום</li>
+<li>3/4 כפית פפריקה אדומה</li>
+<li>פלפל שחור לפי הטעם</li>
+<li>מלח לפי הטעם</li>
+<li>מים למילוי 3/4 מהסיר</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>סיר בנפח 6-7 ליטר</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>טגנו את הבצלים הקצוצים בסיר.</li>
+<li>הוסיפו את העדשים ולאחר מכן את הגזר, הדלעת, הבטטה והסלרי.</li>
+<li>הוסיפו את אבקת מרק העוף, הכורכום, הפפריקה, הפלפל השחור והמלח.</li>
+<li>ערבבו היטב כדי שהתבלינים 'ייפתחו'.</li>
+<li>הוסיפו מים עד לגובה של 3/4 מהסיר.</li>
+<li>הביאו לרתיחה על אש גדולה ולאחר מכן הנמיכו ללהבה קטנה יותר.</li>
+<li>בשלו במשך כ-45 דקות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי לטעום לקראת סוף הבישול ולוודא שהירקות רכים והתיבול לטעמכם.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-36" data-title="מרק עוף של איריס" data-category="מרקים" style="border-right-color: #d4a017; animation-delay: 1.44s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍲 מרק עוף של איריס</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2-3 כרעיים שלמות של עוף</li>
+<li>מים לכיסוי</li>
+<li>קישוא</li>
+<li>גזר</li>
+<li>דלעת (אופציונלי)</li>
+<li>סלרי</li>
+<li>שמיר</li>
+<li>פטרוזיליה (אופציונלי)</li>
+<li>מעט אבקת מרק עוף</li>
+<li>פלפל</li>
+<li>מלח</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מניחים את הכרעיים בסיר ומכסים במים.</li>
+<li>מבשלים את העוף במים בלבד במשך שעה עד שעה וחצי.</li>
+<li>מוסיפים לסיר את הירקות: קישוא, גזר, דלעת, סלרי, שמיר ופטרוזיליה.</li>
+<li>מתבלים במעט אבקת מרק עוף, פלפל ומלח לפי הטעם.</li>
+<li>מביאים לרתיחה, מנמיכים את האש ומבשלים על אש קטנה במשך כ-2.5 שעות נוספות.</li>
+<li>בסיום הבישול, מוציאים את חלקי העוף מהסיר.</li>
+<li>מפרקים את בשר העוף מהעצמות ומחזירים את הבשר המפורק למרק.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>המרק לא יוצא צלול כמו מרק מסונן, מכיוון שהירקות והעוף המפורק נשארים בפנים.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים חם.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-צמחוני" class="category-header" style="color: #27ae60; border-bottom-color: #27ae60">🥬 צמחוני</h2>
+<div class="recipe-card" id="recipe-37" data-title="בורגול עם עדשים (מג׳דרה)" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.48s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 בורגול עם עדשים (מג׳דרה)</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 כוס בורגול</li>
+<li>2 בצלים (לפחות)</li>
+<li>1 כף שטוחה סוכר</li>
+<li>עדשים שחורות מבושלות ומסוננות - כוס עד כוס וחצי</li>
+<li>מים חמים</li>
+<li>אבקת מרק (כמות לא צוינה, צוין כרכיב משמעותי)</li>
+<li>½ כפית כמון</li>
+<li>¼ עד ½ כפית כורכום</li>
+<li>½ כפית מלח</li>
+<li>½ כפית פלפל שחור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>שמים את כוס הבורגול בקערה ומכסים במים חמים בדיוק עד גובה הבורגול. משרים למשך כ-15 דקות ולאחר מכן מסננים היטב.</li>
+<li>בסיר, מטגנים לפחות שני בצלים. מוסיפים כף שטוחה של סוכר וממשיכים לטגן עד שהבצל נהיה שקוף ובעל גוון חום קל.</li>
+<li>מוסיפים לסיר עם הבצל המקורמל את הבורגול המסונן ואת העדשים המבושלות והמסוננות.</li>
+<li>מוסיפים את כל התבלינים: אבקת מרק, כמון, כורכום, מלח ופלפל.</li>
+<li>מוסיפים מעט מים חמים ('טיפונת') כדי לסייע למרכיבים להתערבב היטב.</li>
+<li>מערבבים את כל תכולת הסיר. אין צורך בבישול ארוך או בנוזלים רבים כיוון שהבורגול והעדשים כבר מוכנים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי לשים פחות תבלינים בהתחלה ולהוסיף לפי הטעם.</li>
+<li>מומלץ לערבב את כל התבלינים בכוס נפרדת עם מעט פחות מחצי כוס מים חמים עד שהם נמסים, ואז לשפוך את התערובת לסיר.</li>
+<li>יש לבשל את העדשים מראש אך להיזהר שלא יהיו רכות מדי ('מושיות').</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-38" data-title="חצילים אפויים בתחמיץ אסייתי" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 חצילים אפויים בתחמיץ אסייתי</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לחצילים: 2 חצילים קלים ומבריקים, קלופים בצורת זברה</li>
+<li>לחצילים: 1/4 כוס שמן זית</li>
+<li>לחצילים: 3-4 שיני שום קצוצות קטן</li>
+<li>לחצילים: 1 כפית יפה של ג'ינג'ר טרי, קצוץ קטן או מגורד</li>
+<li>לחצילים: צ'ילי טרי פרוס לטבעות דקיקות, לפי הטעם</li>
+<li>לחצילים: 1/2 כוס עלי כוסברה או נענע</li>
+<li>לחצילים: מלח גס</li>
+<li>לחצילים: 2 כפות שמן לטיגון השום במחבת</li>
+<li>לרוטב: 3 כפות סויה</li>
+<li>לרוטב: 3 כפות מים קרים</li>
+<li>לרוטב: 1 כפית שמן שומשום</li>
+<li>לרוטב: 2 כפות חומץ</li>
+<li>לרוטב: 1 כף סוכר חום</li>
+<li>לרוטב: 1 כפית קורנפלור</li>
+<li>לרוטב: 1/2 כפית מלח</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תנור</li>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>מגבת נייר</li>
+<li>קערית</li>
+<li>מחבת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מחממים תנור ל-200 מעלות ומכינים תבנית עם נייר אפייה.</li>
+<li>חותכים את החצילים לפרוסות יפות ועבות בעובי של כ-2 ס"מ.</li>
+<li>ממליחים את החצילים במלח גס ומניחים להם להזיע כרבע שעה.</li>
+<li>אחרי רבע שעה סופגים את נוזלי החצילים בעזרת מגבת נייר.</li>
+<li>מערבבים את פרוסות החציל היטב עם רבע כוס שמן זית.</li>
+<li>משטחים את החצילים על תבנית האפייה ואופים כ-20 דקות, ואם צריך הופכים באמצע האפייה לצד השני. כשהם משחימים, מוציאים ומניחים בצד.</li>
+<li>בקערית מערבבים יחד את כל חומרי הרוטב: סויה, מים קרים, שמן שומשום, חומץ, סוכר חום, קורנפלור ומלח.</li>
+<li>במחבת עם 2 כפות שמן מקפיצים את השום הקצוץ, הג'ינג'ר והצ'ילי.</li>
+<li>כששומעים רחש קל של השמן מוסיפים מיד את הרוטב שהוכן מראש ומערבבים מעט.</li>
+<li>מחליקים את החצילים האפויים בעזרת נייר האפייה לתוך המחבת עם הרוטב.</li>
+<li>מערבבים בעדינות, מעטרים בכוסברה או בנענע, נותנים לזה 2-3 דקות של קירמול על האש ומורידים מהכיריים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להשתמש בכוסברה או בנענע לפי הטעם.</li>
+<li>מי שאוהב חריף יכול לקצוץ צ'ילי שלם.</li>
+<li>הכי טעים אחרי יום.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>אפשר להגיש מיד, אבל הטעם משתבח אחרי יום.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-39" data-title="לביבות זוקיני/קישואים" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 לביבות זוקיני/קישואים</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>4 קישואים גדולים</li>
+<li>2 בצלים</li>
+<li>צרור שמיר</li>
+<li>2-3 ביצים</li>
+<li>חצי כוס שמן</li>
+<li>3/4 כוס קמח/קמח תופח/קמח שקדים</li>
+<li>גרעיני חמניה</li>
+<li>מלח</li>
+<li>פלפל</li>
+<li>כורכום</li>
+<li>מעט אבקת מרק</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>נינג'ה / תנור / אייר פריי</li>
+<li>מסננת</li>
+<li>תבנית</li>
+<li>נייר אפיה</li>
+<li>תרוד</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מגררים את הקישואים על החלק הדק ביותר של הפומפיה וסוחטים היטב מהנוזלים. אם אין נוזלים בהתחלה, יש להמתין מעט.</li>
+<li>קוצצים את הבצל קטן ומטגנים עד לקבלת גוון זהוב-שחום.</li>
+<li>קוצצים רק את עלי השמיר וזורקים את הגבעולים.</li>
+<li>מערבבים בקערה את כל המרכיבים: הקישואים הסחוטים, הבצל המטוגן, השמיר הקצוץ ושאר המצרכים.</li>
+<li>לחימום התנור: 180 מעלות.</li>
+<li>לאפייה בנינג'ה או בתנור: מרססים מעט שמן על תבנית (או מניחים נייר אפיה בתבנית תנור).</li>
+<li>יוצרים עם הידיים תלוליות מהתערובת על התבנית.</li>
+<li>מתיזים עוד מעט שמן מעל הלביבות ואופים.</li>
+<li>לאחר הנגלה הראשונה, סוחטים שוב את הנוזלים שהצטברו בתערובת, או מסננים במסננת קטנה.</li>
+<li>אופים עד שהלביבות שחומות יפה. אין צורך להפוך אותן.</li>
+<li>מוציאים בזהירות עם תרוד כדי שהלביבות החמות לא יתפרקו.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר ורצוי להכין בנינג'ה או באייר פריי (חום בינוני עד להשחמה).</li>
+<li>כמובן שאפשר גם לטגן במחבת.</li>
+<li>חשוב לרסס את התבנית בנינג'ה כדי שהלביבות לא יידבקו.</li>
+<li>לאחר הנגלה הראשונה, התערובת תגיר נוזלים. חשוב לסחוט אותם היטב לפני הכנת הנגלה הבאה.</li>
+<li>אין צורך להפוך את הלביבות במהלך האפייה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-40" data-title="סלט אבוקדו עם אשכולית אדומה" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 סלט אבוקדו עם אשכולית אדומה</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>3 אבוקדו בשלים ומוצקים</li>
+<li>1 אשכולית אדומה, מפולטת לחלקים</li>
+<li>1 פקעת שומר, חצויה ופרוסה דק</li>
+<li>חופן עלי כוסברה</li>
+<li>3 צנוניות פרוסות דק, או 1/2 קולרבי חתוך למקלות</li>
+<li>1 פלפל צ'ילי אדום, חתוך לטבעות דקות</li>
+<li>1/2 בצל סגול, פרוס לטבעות דקות</li>
+<li>חופן עלי בייבי סלנובה, קרועים</li>
+<li>1/4 כוס שמן זית איכותי</li>
+<li>מלח גס</li>
+<li>פלפל שחור גרוס</li>
+<li>50 גרם גבינת פטה/בולגרית, מפוררת (לא חובה)</li>
+<li>2 כפות גרעיני דלעת או צנוברים, קלויים (לא חובה)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>קערה גדולה</li>
+<li>צלחת הגשה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>בקערה גדולה מניחים את עלי הסלנובה, השומר, האשכולית, הצנוניות, הצ'ילי והבצל.</li>
+<li>מתבלים בשמן זית, מלח ופלפל ומערבבים בעדינות.</li>
+<li>חוצים את האבוקדו, מוציאים את הגלעין, קולפים ופורסים לפרוסות בעובי של כ-1/2 ס"מ.</li>
+<li>מוסיפים את האבוקדו לקערה ומערבבים בעדינות, או מסדרים את פרוסות האבוקדו בצלחת הגשה ומניחים מעל את הסלט.</li>
+<li>מפזרים מעל את הגבינה המפוררת ואת הגרעינים או הצנוברים, אם משתמשים, ומגישים מיד.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>כדאי להשתמש באבוקדו בשל אך לא רך מדי.</li>
+<li>אם אוהבים כוסברה, מומלץ לא לוותר עליה כי היא מחמיאה לאבוקדו.</li>
+<li>אפשר להשתמש בצנוניות או להחליף ב-1/2 קולרבי חתוך למקלות.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים מיד אחרי הוספת האבוקדו.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-41" data-title="סלט עדשים שחורות וחצילים" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 סלט עדשים שחורות וחצילים</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 חציל קלוף וחתוך לקוביות בגודל 1 ס"מ</li>
+<li>1/4 כוס שמן זית</li>
+<li>מלח</li>
+<li>פלפל שחור גרוס</li>
+<li>1 וחצי כוסות עדשים שחורות</li>
+<li>צרור כוסברה קצוצה</li>
+<li>1 בצל סגול קצוץ דק</li>
+<li>4 גבעולי בצל ירוק פרוסים דק</li>
+<li>2 שיני שום כתושות</li>
+<li>מיץ מלימון שלם</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תנור</li>
+<li>תבנית</li>
+<li>סיר</li>
+<li>מסננת</li>
+<li>קערה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מחממים תנור ל-180 מעלות.</li>
+<li>מתבלים את קוביות החציל בשמן זית, מלח ופלפל ואופים כ-15 דקות עד להזהבה. מצננים.</li>
+<li>בינתיים מביאים לרתיחה את העדשים בסיר מלא מים.</li>
+<li>מנמיכים את הלהבה ומבשלים כ-15 דקות או עד שהעדשים מתרככות אך לא מתפרקות.</li>
+<li>מסננים את העדשים, מצננים מעט ומעבירים לקערה.</li>
+<li>מוסיפים לקערה את הכוסברה, הבצל הסגול, הבצל הירוק, השום, מיץ הלימון וקוביות החציל.</li>
+<li>מערבבים היטב ומניחים לסלט כחצי שעה לפני ההגשה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>הכי טעים להגיש עם יוגורט מתובל, למשל ראיטה.</li>
+<li>אפשר להוסיף פלפל חריף טרי קצוץ ו-1/2 כוס עלי נענע.</li>
+<li>אפשר להמיר חצי מכמות הכוסברה בנענע.</li>
+<li>אפשר להוסיף 1/3 כוס טחינה גולמית מדוללת ב-3 כפות מים.</li>
+<li>אפשר להוסיף סלק מבושל חתוך לקוביות בגודל 1 ס"מ.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מניחים לסלט לעמוד כחצי שעה לפני ההגשה.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-42" data-title="פשטידת ירקות" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 פשטידת ירקות</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים בינוניים</li>
+<li>4 זוקיני או קישואים רגילים</li>
+<li>3 גזרים</li>
+<li>חתיכת דלעת (אופציונלי)</li>
+<li>3 ביצים</li>
+<li>¾ כוס קמח תופח, או: ½ כוס קמח תופח + ½ כוס קמח עדשים</li>
+<li>קצת פחות מ-½ כוס שמן</li>
+<li>כ-1.5 כפות אבקת מרק עוף</li>
+<li>כ-1 כפית מלח (או פחות)</li>
+<li>½ כפית פלפל שחור</li>
+<li>½ כפית כורכום (או פחות)</li>
+<li>שמיר (אופציונלי)</li>
+<li>שומשום וגרעיני דלעת לפיזור מעל</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית פיירקס מלבנית או תבניות אישיות</li>
+<li>מג'ימיקס ידני או פומפייה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קוצצים 2 בצלים בינוניים ומטגנים אותם.</li>
+<li>בזמן שהבצל מטגן, מגרדים 4 זוקיני, 3 גזרים וחתיכת דלעת.</li>
+<li>מערבבים בקערה את הירקות המגורדים עם הבצל המטוגן והשמן שנותר מהטיגון.</li>
+<li>מוסיפים לקערה 3 ביצים, את הקמח שבחרתם, השמן והתבלינים (מרק עוף, מלח, פלפל וכורכום).</li>
+<li>מוסיפים שמיר קצוץ.</li>
+<li>מערבבים היטב את כל המרכיבים לבלילה אחידה.</li>
+<li>משמנים תבנית ושופכים לתוכה את הבלילה.</li>
+<li>מפזרים מעל שומשום וגרעיני דלעת.</li>
+<li>אופים בתנור שחומם מראש ל-180 מעלות עד שהפשטידה שחומה, גם מלמטה.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להשתמש בקישואים רגילים במקום זוקיני.</li>
+<li>הדלעת היא אופציונלית, אפשר להכין רק עם דלעת ובלי גזר.</li>
+<li>ניתן להכין בתבנית פיירקס מלבנית גדולה או בתבניות אלומיניום אישיות.</li>
+<li>כמות המלח והכורכום ניתנת להתאמה לפי הטעם, מומלץ להתחיל עם קצת פחות.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-43" data-title="תבשיל קארי וקוקוס עם טופו וירקות" data-category="צמחוני" style="border-right-color: #27ae60; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥬 תבשיל קארי וקוקוס עם טופו וירקות</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לטופו: 1 חבילה (300 גרם) טופו קשה</li>
+<li>לטופו: 5 כפות שמן צמחי</li>
+<li>לתבשיל קארי: 1 כף שמן צמחי</li>
+<li>לתבשיל קארי: 1-2 כפות ממרח קארי אדום</li>
+<li>לתבשיל קארי: 1 קופסה (400 מ"ל) קרם קוקוס</li>
+<li>לתבשיל קארי: 1/2 כוס מים</li>
+<li>לתבשיל קארי: 1-2 עלי קפיר ליים, טרי או מיובש, או גרידת לימון</li>
+<li>לתבשיל קארי: 1 כפית סוכר חום</li>
+<li>לתבשיל קארי: 1.5 כפות רוטב סויה</li>
+<li>לירקות: חופן גדול אפונה ירוקה מוקפאת</li>
+<li>לירקות: 1-2 קישואים קטנים, חתוכים לקוביות בינוניות</li>
+<li>לירקות: 1 ראש ברוקולי קטן, חתוך לתפרחות, או חופן שעועית ירוקה</li>
+<li>לירקות: חופן גדול עלי בייבי תרד</li>
+<li>להגשה: 1/2 כוס עלי כוסברה או בזיליקום</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מגבת נייר</li>
+<li>מחבת קטנה</li>
+<li>נייר סופג</li>
+<li>סיר קטן</li>
+<li>צלחת הגשה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מוציאים את הטופו מהשקית, מייבשים מעט בעזרת מגבת נייר וחותכים לקוביות בגודל 1-3 ס"מ.</li>
+<li>מחממים מחבת קטנה על להבה בינונית-גבוהה, מוסיפים 5 כפות שמן ואת קוביות הטופו.</li>
+<li>מטגנים 5-8 דקות תוך ערבוב מדי פעם, עד שהטופו זהוב ופריך מכל הכיוונים. מוציאים לצלחת עם נייר סופג ושומרים בצד.</li>
+<li>במקביל מחממים בסיר קטן כף שמן צמחי, מוסיפים את ממרח הקארי ומטגנים כחצי דקה על להבה בינונית-גבוהה עד שהוא נפתח ומפיץ ריח.</li>
+<li>מוזגים את קרם הקוקוס לסיר בהדרגה, 3-4 כפות בכל פעם, תוך כדי ערבוב.</li>
+<li>מוסיפים רבע כוס מים ובוחשים היטב.</li>
+<li>מוסיפים את עלי הקפיר ליים או גרידת הלימון, הסוכר ורוטב הסויה. טועמים ומתקנים תיבול עם עוד סויה או סוכר לפי הטעם.</li>
+<li>מוסיפים לסיר את האפונה המוקפאת, קוביות הקישואים ותפרחות הברוקולי ומבשלים 1-2 דקות מעל להבה בינונית, כדי לשמור על פריכות הירקות.</li>
+<li>אם הרוטב סמיך מדי מוסיפים עוד מים לפי הצורך.</li>
+<li>מוסיפים את עלי התרד ואת קוביות הטופו המטוגנות, בוחשים היטב, טועמים שוב ומתקנים תיבול במידת הצורך.</li>
+<li>מעבירים לצלחת הגשה, מעטרים בבזיליקום או כוסברה טרייה ומגישים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>אפשר להשתמש בכל ממרח קארי שיש בבית: אדום, ירוק או צהוב.</li>
+<li>לגרסה ללא גלוטן משתמשים בסויה ללא גלוטן או במעט מלח.</li>
+<li>חשוב לא לבשל את הירקות יותר מדי כדי לשמור על הפריכות שלהם.</li>
+<li>מומלץ להגיש לצד אורז לבן.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים חם, רצוי לצד אורז לבן.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-תוספות" class="category-header" style="color: #a0785a; border-bottom-color: #a0785a">🍚 תוספות</h2>
+<div class="recipe-card" id="recipe-44" data-title="אורז ירקות" data-category="תוספות" style="border-right-color: #a0785a; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍚 אורז ירקות</h3>
+      <div class="header-badges">
+        <span class="badge dairy">חלבי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דורינה (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>בצל</li>
+<li>שום</li>
+<li>גמבה</li>
+<li>קישוא</li>
+<li>כרוב</li>
+<li>חציל</li>
+<li>עגבניה</li>
+<li>שמיר</li>
+<li>גזר</li>
+<li>אורז</li>
+<li>מלח</li>
+<li>פלפל</li>
+<li>אבקת מרק</li>
+<li>כורכום</li>
+<li>כמון</li>
+<li>מעט ראס אל חנות</li>
+<li>מים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>לקצוץ בצל, שום, גמבה, קישוא, כרוב, חציל, עגבניה ושמיר ולגרד את הגזר.</li>
+<li>לטגן בסיר לפי הסדר הבא: עגבניה, בצל, גמבה, גזר, חציל, קישוא, כרוב, שום, שמיר.</li>
+<li>להוסיף את האורז ולטגן עם כל הירקות למשך מספר דקות.</li>
+<li>לתבל במלח, פלפל, אבקת מרק, כורכום, כמון ומעט ראס אל חנות.</li>
+<li>להוסיף מים ולתת להתבשל.</li>
+</ol></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-45" data-title="אורז עם ערמונים וקשיו" data-category="תוספות" style="border-right-color: #a0785a; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍚 אורז עם ערמונים וקשיו</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">אמא (תמונה)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים גדולים</li>
+<li>שמן לטיגון</li>
+<li>2 כוסות אורז פרסי או בסמטי</li>
+<li>4 כוסות מים (ועוד מים חמים לפי הצורך)</li>
+<li>1 חבילת קשיו טבעי (לא קלוי)</li>
+<li>1-2 חבילות פטריות, חתוכות</li>
+<li>1-2 חבילות ערמונים, חתוכים</li>
+<li>1/4 כוס רוטב סויה</li>
+<li>1 כף סילאן</li>
+<li>1 כפית מלח</li>
+<li>1/4 כפית פלפל שחור טחון</li>
+<li>1/2 כוס שמן</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית המתאימה לתנור</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>לטגן שני בצלים גדולים עם שמן עד להזהבה.</li>
+<li>לחמם תנור ל-200-220 מעלות.</li>
+<li>לערבב את כל המרכיבים יחד בתבנית המתאימה לתנור, כולל הבצל המטוגן.</li>
+<li>לאפות בתנור במשך 10 דקות ללא כיסוי.</li>
+<li>להוציא את התבנית, לכסות בנייר כסף ולהחזיר לתנור לעוד כ-30-50 דקות, עד שהאורז מוכן.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ניתן להשתמש בכל סוג אורז שיש בבית.</li>
+<li>זמן האפייה הכולל הוא כשעה.</li>
+<li>אם הקשיו מתחילים להישרף, יש לכסות את התבנית בנייר כסף מוקדם יותר.</li>
+<li>אם התבשיל נראה יבש במהלך האפייה, יש להוסיף מעט מים חמים.</li>
+<li>ניתן להוסיף כמות כפולה של פטריות וערמונים (2 חבילות מכל אחד).</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-46" data-title="סלט כרוב עם אפונה" data-category="תוספות" style="border-right-color: #a0785a; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍚 סלט כרוב עם אפונה</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">דורינה (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חצי כרוב</li>
+<li>כ-כוס וחצי אפונה קפואה</li>
+<li>בצל ירוק</li>
+<li>שקדים</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>צנצנת להכנת הרוטב</li>
+<li>מחבת לקליית השקדים</li>
+<li>קערית</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מכינים את הסלט מראש עם האפונה הקפואה כדי שתפשיר מעצמה. אין לבשל את האפונה.</li>
+<li>מכינים את הרוטב בצנצנת נפרדת.</li>
+<li>קולים קלות את השקדים במחבת יבשה (ללא שמן) ושומרים בקערית בצד.</li>
+<li>סמוך להגשה, מנערים היטב את הרוטב בצנצנת, שופכים על הסלט ומוסיפים את השקדים הקלויים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>יש להשתמש באפונה קפואה עדינה, לא מהסוג הרגיל.</li>
+<li>חשוב לקלות את השקדים קלות בלבד.</li>
+<li>רוטב: 3 כפות חומץ יין לבן, 2 כפות סוכר, מלח, פלפל, רבע כוס שמן קנולה.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>יש להוסיף את הרוטב והשקדים רק סמוך להגשה.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-מאפים" class="category-header" style="color: #d4a44c; border-bottom-color: #d4a44c">🥧 מאפים</h2>
+<div class="recipe-card" id="recipe-47" data-title="בורקס בשר" data-category="מאפים" style="border-right-color: #d4a44c; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥧 בורקס בשר</h3>
+      <div class="header-badges">
+        <span class="badge meat">בשרי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>חציל: 1 גדול</li>
+<li>בשר טחון: חצי קילו</li>
+<li>בצל: 1 גדול או 2 בינוניים, קצוץ</li>
+<li>בצק פריך מלוח של מעדנות או הכנה ביתית של בצק פריך: 1 חבילה (המכילה 2 גלילים)</li>
+<li>טבעות זיתים: לפי הטעם</li>
+<li>צנוברים: לפי הטעם</li>
+<li>שמן לטיגון</li>
+<li>מלח: לפי הטעם</li>
+<li>פלפל שחור: לפי הטעם</li>
+<li>פפריקה מתוקה: לפי הטעם</li>
+<li>שבבי צ'ילי גרוס: מעט</li>
+<li>אגוז מוסקט: קצת</li>
+<li>ביצה טרופה: 1 (לציפוי)</li>
+<li>קצח או שומשום: לפי הטעם (לציפוי)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית אפייה</li>
+<li>נייר אפייה</li>
+<li>מחבת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>קולים את החציל בתנור שחומם מראש ל-200 מעלות (או 195) עד שהוא רך.</li>
+<li>במקביל, מחממים שמן במחבת ומאדים את הבצל הקצוץ.</li>
+<li>מוסיפים למחבת את הבשר הטחון ומפוררים בעזרת כף עץ עד שהוא משנה את צבעו.</li>
+<li>לאחר שהחציל מוכן, מוציאים את תוכנו ומוסיפים למחבת עם הבשר והבצל.</li>
+<li>מתבלים במלח, פלפל שחור, פפריקה מתוקה, מעט שבבי צ'ילי ואגוז מוסקט.</li>
+<li>מוסיפים טבעות זיתים וצנוברים ומערבבים הכל יחד על אש נמוכה.</li>
+<li>מפשירים את גלילי הבצק כמעט עד הסוף (חשוב שלא יהיו מופשרים מדי).</li>
+<li>חותכים כל גליל בצק לחצי לרוחב, כך שמתקבלים 4 מלבני בצק בסך הכל.</li>
+<li>מניחים מהמלית לאורך קצה אחד של כל מלבן בצק, ומגלגלים לרולדה.</li>
+<li>מניחים את הרולדות על תבנית מרופדת בנייר אפייה.</li>
+<li>מורחים ביצה טרופה מעל הרולדות ומפזרים קצח או שומשום.</li>
+<li>אופים בתנור שחומם מראש ל-180 מעלות למשך כ-40 דקות, עד שהמאפים שחומים.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>חשוב להפשיר את הבצק כמעט עד הסוף. אם הוא מופשר מדי הוא יהיה רך וקשה לעבודה, ואם הוא קפוא מדי הוא עלול להישבר.</li>
+<li>מהכמות במתכון יוצאים 4 בורקסים (רולדות).</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-48" data-title="הלזניה של דורה" data-category="מאפים" style="border-right-color: #d4a44c; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥧 הלזניה של דורה</h3>
+      <div class="header-badges">
+        <span class="badge dairy">חלבי</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לרוטב העגבניות: 2 עגבניות</li>
+<li>לרוטב העגבניות: שמן זית</li>
+<li>לרוטב העגבניות: 2 חבילות קטנות רסק עגבניות</li>
+<li>לרוטב העגבניות: מים, לפי הצורך</li>
+<li>לרוטב העגבניות: מלח</li>
+<li>לרוטב העגבניות: 1/2 מכל שמנת מתוקה להקצפה</li>
+<li>ללזניה: עלי לזניה</li>
+<li>ללזניה: 1 חציל, פרוס לאורך</li>
+<li>ללזניה: שמן זית לטיגון</li>
+<li>ללזניה: קוטג', כ-3 כפות לכל שכבה</li>
+<li>ללזניה: גבינה צהובה מגוררת או פרוסה</li>
+<li>ללזניה: גבינת פטה מפוררת</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מחבת</li>
+<li>תנור</li>
+<li>תבנית</li>
+<li>נייר כסף</li>
+<li>נייר סופג</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>חוצים את העגבניות לחצאים.</li>
+<li>צורבים את העגבניות במחבת עם שמן זית עד שהקליפה מתרככת וניתן להסיר אותה בקלות.</li>
+<li>מסירים את הקליפה ומועכים את העגבניות.</li>
+<li>מוסיפים למחבת את רסק העגבניות, מים ומלח.</li>
+<li>מבשלים כ-10 עד 15 דקות.</li>
+<li>מוסיפים חצי מכל שמנת מתוקה ומבשלים עוד כ-15 דקות, עד שמתקבל רוטב סמיך וקרמי.</li>
+<li>חוצים את החציל לאורכו.</li>
+<li>פורסים כל חצי לפרוסות ארוכות.</li>
+<li>מטגנים את פרוסות החציל במחבת עם שמן זית עד שהן מתרככות ומשחימות.</li>
+<li>מעבירים את פרוסות החציל לנייר סופג כדי להספיג עודפי שמן.</li>
+<li>מחממים תנור ל-200 מעלות.</li>
+<li>משמנים קלות או מרפדים תבנית לפי הצורך.</li>
+<li>מניחים בתחתית התבנית שכבה של רוטב עגבניות.</li>
+<li>מסדרים מעל שכבה של עלי לזניה.</li>
+<li>מורחים מעל שכבה נוספת של רוטב עגבניות.</li>
+<li>מוסיפים כ-3 כפות קוטג' ומורחים היטב.</li>
+<li>מסדרים שכבה של פרוסות חציל.</li>
+<li>מפזרים מעל קוטג', גבינה צהובה ופטה מפוררת.</li>
+<li>חוזרים על הסידור ל-3 שכבות בסך הכול.</li>
+<li>מכסים את התבנית בנייר כסף.</li>
+<li>אופים במשך 40 דקות.</li>
+<li>מסירים את נייר הכסף ואופים עוד כ-20 דקות, עד שהחלק העליון מזהיב והלזניה מתייצבת.</li>
+<li>נותנים ללזניה לנוח 10 עד 15 דקות לפני החיתוך.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>מומלץ לתת ללזניה לנוח 10 עד 15 דקות אחרי האפייה לפני שחותכים, כדי שהשכבות יתייצבו והפרוסות יצאו יפות יותר.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>מגישים אחרי מנוחה קצרה של 10 עד 15 דקות כדי לייצב את השכבות.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-49" data-title="לחמניות לפסח מקמח מצה" data-category="מאפים" style="border-right-color: #d4a44c; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥧 לחמניות לפסח מקמח מצה</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">נוסף ידנית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>לבצק: 1 ו-2/3 כוסות מים רותחים</li>
+<li>לבצק: 2/3 כוס שמן קנולה</li>
+<li>לבצק: 2 כוסות קמח מצה</li>
+<li>לבצק: 1 כפית מלח דק</li>
+<li>לבצק: קורט פלפל שחור טחון</li>
+<li>לבצק: 4 ביצים L</li>
+<li>תוספת אופציונלית: 2 כפות עגבניות מיובשות קצוצות</li>
+<li>אפשר במקום: 2 כפות עשבי תיבול טריים קצוצים כמו עירית, בזיליקום, אורגנו או תימין, או בצל מטוגן קצוץ</li>
+<li>לקישוט: שומשום</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תנור</li>
+<li>מיקסר עם וו גיטרה</li>
+<li>תבנית</li>
+<li>נייר אפייה</li>
+<li>תבנית סיליקון אישית (אופציונלי)</li>
+<li>קופסה סגורה</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מחממים תנור ל-200 מעלות.</li>
+<li>בקערת מיקסר עם וו גיטרה שמים את קמח המצה, המלח והפלפל השחור.</li>
+<li>מוסיפים את המים הרותחים ישר מהקומקום ואת השמן ומעבדים מיד כ-3 דקות, עד לקבלת בצק אחיד, חלק וחמים.</li>
+<li>ממשיכים לעבד ומוסיפים את הביצים אחת אחרי השנייה, וממתינים שהבצק יתאחד שוב לפני שמוסיפים את הביצה הבאה.</li>
+<li>מוסיפים את העגבניות המיובשות או את התוספת שבחרתם ולשים עד לאיחוד בבצק.</li>
+<li>בידיים רטובות מעצבים מהבצק לחמניות עגולות או מאורכות.</li>
+<li>אם רוצים, מגלגלים את הלחמניות בשומשום לקישוט.</li>
+<li>מניחים את הלחמניות באופן מרווח על תבנית מרופדת בנייר אפייה, או מניחים כדור בצק בכל שקע של תבנית סיליקון אישית.</li>
+<li>אופים 20 דקות בלי לפתוח את דלת התנור בכלל.</li>
+<li>אחרי 20 דקות מנמיכים את חום התנור ל-160 מעלות ואופים כ-30 דקות נוספות, עד שהלחמניות שחומות, יבשות מבפנים וקלות.</li>
+<li>מצננים לפני ההגשה או האחסון.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>חשוב לא לפתוח את דלת התנור ב-20 הדקות הראשונות כדי שהלחמניות לא ישתטחו.</li>
+<li>אפשר להחליף את העגבניות המיובשות בעשבי תיבול טריים קצוצים או בבצל מטוגן קצוץ.</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2a7 7 0 00-7 7h14a7 7 0 00-7-7z"/><path d="M5 12v2a7 7 0 0014 0v-2"/></svg> הגשה ואחסון</h4><ul>
+<li>אפשר להגיש מיד או לשמור בקופסה סגורה בטמפרטורת החדר.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-50" data-title="מופלטה" data-category="מאפים" style="border-right-color: #d4a44c; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥧 מופלטה</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>1 ק"ג קמח</li>
+<li>1 כף שמרים יבשים</li>
+<li>2 כפות סוכר</li>
+<li>3 כוסות מים פושרים (בגודל כוס חד-פעמית קטנה)</li>
+<li>1 כף שטוחה של מלח</li>
+<li>שמן</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מיקסר (או קערה ללישה ידנית)</li>
+<li>מחבת (רצוי חשמלית)</li>
+<li>מערוך</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>במיקסר או בקערה, מערבבים את הקמח, השמרים והסוכר.</li>
+<li>מוסיפים את המים הפושרים בהדרגה ולשים עד להיווצרות בצק.</li>
+<li>לאחר היווצרות הבצק, מוסיפים כף שטוחה של מלח וממשיכים ללוש.</li>
+<li>נותנים לבצק לנוח כ-15 דקות.</li>
+<li>יוצרים מהבצק עיגולים.</li>
+<li>משמנים היטב משטח עבודה (שיש), מניחים עליו את עיגולי הבצק, ונותנים להם לנוח ולספוג את השמן כ-20 דקות.</li>
+<li>על משטח עבודה משומן, פותחים כל עיגול בצק ומרדדים אותו לעלה דק מאוד.</li>
+<li>מחממים מחבת עם מעט שמן.</li>
+<li>מניחים את המופלטה הראשונה במחבת. כשהצד הראשון מוכן, הופכים אותה.</li>
+<li>מניחים מיד מעל המופלטה ההפוכה את המופלטה הבאה (הלא מבושלת).</li>
+<li>כאשר הצד התחתון של הערימה מוכן, הופכים את כל הערימה יחד ומניחים את המופלטה הבאה מעל.</li>
+<li>ממשיכים כך עד לסיום כל הכמות.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>מומלץ להשתמש במחבת חשמלית, זה יותר קל.</li>
+<li>חשוב מאוד לפתוח את הבצק על משטח משומן היטב.</li>
+<li>אפשרות נוספת למנוחת עיגולי הבצק: לשים אותם בקערה גדולה עם מעט שמן בתחתית.</li>
+</ul></div>
+  </div>
+</div>
+<div class="recipe-card" id="recipe-51" data-title="פשטידת כרובית או ברוקולי" data-category="מאפים" style="border-right-color: #d4a44c; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🥧 פשטידת כרובית או ברוקולי</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">הודעה קולית</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>2 בצלים, קצוצים</li>
+<li>2 ראשי כרובית או ברוקולי</li>
+<li>4 ביצים</li>
+<li>4 כפות מיונז שטוחות</li>
+<li>1 כפית חרדל</li>
+<li>מלח</li>
+<li>פלפל שחור</li>
+<li>פלפל לבן</li>
+<li>4-5 כפות קמח תופח (או קמח רגיל עם מעט אבקת אפייה)</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>תבנית עגולה (פיירקס או זכוכית) בקוטר 26 ס"מ בערך</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>לטגן את הבצל הקצוץ עד להזהבה.</li>
+<li>לבשל את הכרובית או הברוקולי עד לריכוך.</li>
+<li>לקצוץ את הכרובית/ברוקולי המבושלים לחתיכות קטנות מאוד. אפשר למעוך חלק עם מזלג.</li>
+<li>להעביר את הבצל המטוגן והכרובית/ברוקולי הקצוצים לקערה גדולה.</li>
+<li>בקערה נפרדת, לטרוף את הביצים ולשפוך אותן לקערת הירקות.</li>
+<li>להוסיף לקערה את המיונז, החרדל, המלח, הפלפל השחור והפלפל הלבן.</li>
+<li>להוסיף את הקמח ולערבב הכל יחד לתערובת אחידה.</li>
+<li>להעביר את התערובת לתבנית המשומנת.</li>
+</ol></div>
+<div class="section tips-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg> טיפים</h4><ul>
+<li>ניתן להשתמש בקמח תופח, או בקמח רגיל בתוספת מעט אבקת אפייה.</li>
+</ul></div>
+  </div>
+</div>
+<h2 id="cat-קינוחים" class="category-header" style="color: #6b3a2a; border-bottom-color: #6b3a2a">🍫 קינוחים</h2>
+<div class="recipe-card" id="recipe-52" data-title="כדורי תמרים" data-category="קינוחים" style="border-right-color: #6b3a2a; animation-delay: 1.5s">
+  <button type="button" class="recipe-header" aria-expanded="false">
+    <div class="recipe-title-row">
+      <h3>🍫 כדורי תמרים</h3>
+      <div class="header-badges">
+        <span class="badge parve">פרווה</span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </div>
+    </div>
+    <span class="recipe-source">שחר (טקסט)</span>
+  </button>
+  <div class="recipe-body">
+    <div class="section ingredients-section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> מצרכים</h4><ul>
+<li>85 גרם שקדים רגילים</li>
+<li>200 גרם מגהולים</li>
+<li>2 כפות קקאו איכותי</li>
+<li>כף חמאת בוטנים טבעית</li>
+<li>כף שמן קוקוס</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg> ציוד</h4><ul>
+<li>מעבד מזון</li>
+</ul></div>
+<div class="section"><h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> אופן ההכנה</h4><ol class="steps">
+<li>מוציאים מהתמרים את הגרעינים.</li>
+<li>טוחנים את השקדים במעבד מזון.</li>
+<li>מוסיפים את התמרים והקקאו וטוחנים גם כן.</li>
+<li>מוסיפים את חמאת הבוטנים ושמן הקוקוס כדי שהחומרים יידבקו.</li>
+<li>ממשיכים לערבב את כל החומרים עד לקבלת תערובת אחידה.</li>
+<li>יוצרים כדורים קטנים מהתערובת ומכניסים למקרר להתייצבות.</li>
+</ol></div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <span class="heart">&hearts;</span><br>
+  נוצר באהבה מקבוצת הווטסאפ המשפחתית<br>
+  הזכויות על המתכונים שמורות ליוצריהם המקוריים
+</div>
+
+<script>
+(function() {
+  var searchInput = document.getElementById('search');
+  var searchCount = document.getElementById('search-count');
+  var expandBtn = document.getElementById('expand-btn');
+  var stickyBar = document.getElementById('sticky-bar');
+  var container = document.getElementById('recipes-container');
+  var recipeTotal = document.getElementById('recipe-total');
+  var allExpanded = false;
+
+  // Helper: get all cards/headers fresh (works after DOM changes)
+  function getCards() { return document.querySelectorAll('.recipe-card'); }
+  function getHeaders() { return document.querySelectorAll('.category-header'); }
+  function getTocLinks() { return document.querySelectorAll('.toc-cat'); }
+  function updateRecipeTotal() {
+    if (recipeTotal) recipeTotal.textContent = String(getCards().length);
+  }
+
+  // Sticky bar shadow on scroll
+  var scrollY = 0;
+  window.addEventListener('scroll', function() {
+    scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (scrollY > 80) {
+      stickyBar.className = 'sticky-bar scrolled';
+    } else {
+      stickyBar.className = 'sticky-bar';
+    }
+  }, { passive: true });
+
+  updateRecipeTotal();
+
+  // Toggle single card — direct handlers on each button (iOS Safari
+  // does not bubble click events through non-interactive ancestors)
+  var allHeaders = document.querySelectorAll('.recipe-header');
+  for (var h = 0; h < allHeaders.length; h++) {
+    allHeaders[h].addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = this.closest('.recipe-card');
+      if (!card) return;
+      var isExpanded = card.classList.contains('expanded');
+      if (isExpanded) {
+        card.classList.remove('expanded');
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        card.classList.add('expanded');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  // Toggle all
+  expandBtn.addEventListener('click', function() {
+    allExpanded = !allExpanded;
+    var cards = getCards();
+    for (var i = 0; i < cards.length; i++) {
+      if (cards[i].style.display !== 'none' && !cards[i].classList.contains('hidden')) {
+        if (allExpanded) {
+          cards[i].classList.add('expanded');
+          cards[i].querySelector('.recipe-header').setAttribute('aria-expanded', 'true');
+        } else {
+          cards[i].classList.remove('expanded');
+          cards[i].querySelector('.recipe-header').setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+    expandBtn.textContent = allExpanded ? 'סגור הכל' : 'פתח הכל';
+  });
+
+  // Search — debounced, multiple event types for iOS compatibility
+  var searchTimer = null;
+  function doSearch() {
+    var query = (searchInput.value || '').trim().toLowerCase();
+    var cards = getCards();
+    var headers = getHeaders();
+
+    if (!query) {
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('hidden');
+        cards[i].classList.remove('expanded');
+        cards[i].querySelector('.recipe-header').setAttribute('aria-expanded', 'false');
+      }
+      for (var j = 0; j < headers.length; j++) {
+        headers[j].style.display = '';
+      }
+      searchCount.style.display = 'none';
+      allExpanded = false;
+      expandBtn.textContent = 'פתח הכל';
+      return;
+    }
+
+    var visible = 0;
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var title = (card.getAttribute('data-title') || '').toLowerCase();
+      var body = (card.textContent || card.innerText || '').toLowerCase();
+      var match = title.indexOf(query) !== -1 || body.indexOf(query) !== -1;
+      if (match) {
+        card.classList.remove('hidden');
+        card.classList.add('expanded');
+        card.querySelector('.recipe-header').setAttribute('aria-expanded', 'true');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('expanded');
+        card.querySelector('.recipe-header').setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    for (var j = 0; j < headers.length; j++) {
+      var cat = headers[j].id.replace('cat-', '');
+      var catCards = document.querySelectorAll('.recipe-card[data-category="' + cat + '"]:not(.hidden)');
+      headers[j].style.display = catCards.length ? '' : 'none';
+    }
+
+    searchCount.textContent = visible + ' מתכונים נמצאו';
+    searchCount.style.display = 'block';
+  }
+
+  function scheduleSearch() {
+    if (searchTimer) clearTimeout(searchTimer);
+    searchTimer = setTimeout(doSearch, 150);
+  }
+
+  // Listen to multiple events for iOS keyboard compatibility
+  searchInput.addEventListener('input', scheduleSearch);
+  searchInput.addEventListener('keyup', scheduleSearch);
+  searchInput.addEventListener('change', scheduleSearch);
+  // iOS clear button
+  searchInput.addEventListener('search', scheduleSearch);
+
+  // Category filter — event delegation on toc
+  var toc = document.getElementById('toc');
+  toc.addEventListener('click', function(e) {
+    var link = e.target.closest('.toc-cat');
+    if (!link) return;
+    e.preventDefault();
+    var cat = link.getAttribute('data-cat');
+    var wasActive = link.classList.contains('active');
+    var tocLinks = getTocLinks();
+    for (var k = 0; k < tocLinks.length; k++) {
+      tocLinks[k].classList.remove('active');
+    }
+
+    var cards = getCards();
+    var headers = getHeaders();
+
+    if (wasActive) {
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('hidden');
+        cards[i].classList.remove('expanded');
+        cards[i].querySelector('.recipe-header').setAttribute('aria-expanded', 'false');
+      }
+      for (var j = 0; j < headers.length; j++) {
+        headers[j].style.display = '';
+      }
+      searchCount.style.display = 'none';
+      searchInput.value = '';
+      allExpanded = false;
+      expandBtn.textContent = 'פתח הכל';
+    } else {
+      link.classList.add('active');
+      var visible = 0;
+      for (var i = 0; i < cards.length; i++) {
+        var match = cards[i].getAttribute('data-category') === cat;
+        if (match) {
+          cards[i].classList.remove('hidden');
+          visible++;
+        } else {
+          cards[i].classList.add('hidden');
+        }
+      }
+      for (var j = 0; j < headers.length; j++) {
+        headers[j].style.display = headers[j].id === 'cat-' + cat ? '' : 'none';
+      }
+      searchCount.textContent = visible + ' מתכונים ב' + cat;
+      searchCount.style.display = 'block';
+      searchInput.value = '';
+    }
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Opening cookbook...</title>
+</head>
+<body>
+  <p>Opening the latest cookbook...</p>
+  <script>
+    (function () {
+      var fallback = "./cookbook-20260503-194442.html";
+      fetch("./version.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("version fetch failed");
+          return response.json();
+        })
+        .then(function (data) {
+          var target = data && data.latest ? "./" + data.latest : fallback;
+          window.location.replace(target);
+        })
+        .catch(function () {
+          window.location.replace(fallback);
+        });
+    })();
+  </script>
+</body>
+</html>
